@@ -15,8 +15,8 @@ the efficiency of markets. As of version 0.1.0 the randomness tests included in 
 * [The Lo-MacKinlay Heteroscedastic Variance Ratio Test](http://www.turingfinance.com/stock-market-prices-do-not-follow-random-walks/)
 
 Given a univariate zoo time series and a confidence interval, emh will execute each of these tests on the data at 
-multiple frequencies / lags. The result is a data.frame containing sample sizes, computed test statistics, p values, 
-Z scores, and a boolean flag indicating whether or not the test indicates the data was non random.
+multiple frequencies / lags. The result is a data.frame containing frequencies, sample sizes, computed test statistics, 
+p values, Z scores, and a boolean flag indicating whether or not the test indicates the data was non random.
 
 All of this is done with one simple function call,
 
