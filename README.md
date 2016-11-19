@@ -18,7 +18,7 @@ To install emh please use the devtools package,
 
 ```R
 library(devtools)
-devtools::install_github(repo="stuartgordonreid/emh/")
+devtools::install_github(repo="stuartgordonreid/emh")
 ```
 
 ## Example 
