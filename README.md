@@ -21,49 +21,8 @@ library(devtools)
 devtools::install_github(repo="stuartgordonreid/emh")
 ```
 
-## Example 
+## Examples
 
-Let's first download some data,
-
-```R
-library(emh)
-stock_indices <- data_quandl_downloader(data_quandl_indices())
-```
-
-Now let's get the stock market index of our choosing, the SATRIX Financials Index,
-
-```R
-return_series <- indices$`GOOG/JSE_STXFIN`
-```
-
-Now let's run the suite of randomness tests on the returns of the SATRIX Financials Index computed at different lags (1 to 5) and
-frequencies (Monday to Monday returns, ..., Month to Month returns),
-
-```R
-randomness_results <- is_random(return_series, a = 0.99, 
-				freqs1 = c(1, 2, 3, 4, 5), 
-				freqs2 = c("Mon", "Tue", "Wed", "Thu", "Fri", "Week", "Month"))
-```
-
-You can now view the results by typing,
-
-```R
-View(randomness_results)
-```
-
-And you can also plot the results and see what percentage of tests indicate that the SATRIX Financials Index is non random by the test
-name and the frequency of the test,
-
-```R
-plot_results(randomness_results)
-```
-
-![alt text](http://www.turingfinance.com/wp-content/uploads/2016/11/non_random_frequency.png "Non random results by frequency")
-
-![alt text](http://www.turingfinance.com/wp-content/uploads/2016/11/non_random_tests-1.png "Non random results by test")
-
-It's as easy as that. 
-
-## More Information
-
-For more information see my website, [Turing Finance](www.turingfinance.com).
+For examples of how to use the package once it is installed checkout the /examples directory. In there you will find a 
+simple Jupyter notebook demonstrating how to use the emh package. For more information you can also checkout my website 
+where I will be writing quite a bit about this package in the future: [Turing Finance](www.turingfinance.com).
