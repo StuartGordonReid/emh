@@ -37,4 +37,4 @@ devtools::install_github(repo="stuartgordonreid/emh")
 
 For examples of how to use the package once it is installed checkout the /examples directory. In there you will find a 
 simple Jupyter notebook demonstrating how to use the emh package. For more information you can also checkout my website 
-where I will be writing quite a bit about this package in the future: [Turing Finance](www.turingfinance.com).
+where I will be writing quite a bit about this package in the future: [Turing Finance](http://www.turingfinance.com/).
