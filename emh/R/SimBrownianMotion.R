@@ -1,5 +1,3 @@
-
-
 #' @title Brownian Motion with or without Drift.
 #' @description Simulates a logarithmic return series samples from a Brownian Motion model without without drift.
 #'

@@ -1,9 +1,5 @@
-
-
 #' @title Runs Test for Randomness
 #' @description Performs the runs test on binarized returns.
-#'
-#' @details TODO
 #'
 #' @param rets numeric :: time series returns. May be a zoo or numeric vector.
 #' @param a numeric :: alpha. This controls the significance level of the results.

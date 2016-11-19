@@ -38,6 +38,57 @@ plot_rollvol <- function(returns) {
 }
 
 
+plot_results <- function(results_df) {
+  .plot_results_frequency(results_df)
+  .plot_results_test_name(results_df)
+}
+
+
+.plot_results_frequency <- function(results_df) {
+  frequencies <- unique(results_df$Frequency)
+  pct_non_random <- c()
+  for (fr in frequencies) {
+    results_df_fr = results_df[results_df$Frequency == fr, ]
+    pct_non_random <- c(pct_non_random,
+                        sum(results_df_fr$Non_Random) /
+                          length(results_df_fr$Non_Random))
+  }
+  names(pct_non_random) = frequencies
+  par(las=2, mar=c(7.5,4.1,4.1,2.1), mgp=c(4, 1, 0))
+  barplot(pct_non_random, main = "Percentage of tests with non-random result by frequency", cex.names=0.7)
+}
+
+
+.plot_results_test_name <- function(results_df) {
+  test_names <- unique(results_df$Test_Name)
+  pct_non_random <- c()
+  for (fr in test_names) {
+    results_df_fr = results_df[results_df$Test_Name == fr, ]
+    pct_non_random <- c(pct_non_random,
+                        sum(results_df_fr$Non_Random) /
+                          length(results_df_fr$Non_Random))
+  }
+  names(pct_non_random) = test_names
+  par(las=2, mar=c(7.5,4.1,4.1,2.1), mgp=c(4, 1, 0))
+  barplot(pct_non_random, main = "Percentage of tests with non-random result by test name", cex.names=0.7)
+}
+
+
+.plot_results_sample_size <- function(results_df) {
+  sample_sizes <- unique(results_df$Sample_Size)
+  pct_non_random <- c()
+  for (fr in sample_sizes) {
+    results_df_fr = results_df[results_df$Sample_Size == fr, ]
+    pct_non_random <- c(pct_non_random,
+                        sum(results_df_fr$Non_Random) /
+                          length(results_df_fr$Non_Random))
+  }
+  names(pct_non_random) = sample_sizes
+  par(las=2, mar=c(7.5,4.1,4.1,2.1), mgp=c(4, 1, 0))
+  barplot(pct_non_random, main = "Percentage of tests with non-random result by sample size", cex.names=0.7)
+}
+
+
 plot_coloured_points <- function(points = 100, q = 2) {
   alls <- c()
   odds <- c()

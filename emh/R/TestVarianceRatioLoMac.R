@@ -9,7 +9,8 @@
 #' whether or not the observed Mr statistic for the number of observations, is
 #' within or out of the limiting distribution defined by the Asymptotic Variance.
 #'
-#' @param X vector :: A log price process.
+#' @param rets vector :: A log returns process.
+#' @param a numeric :: The confidence interval to use.
 #' @param q int :: The sampling interval for the estimator.
 #'
 test_vratio_lo_mac <- function(rets, a = 0.99, q = 2) {

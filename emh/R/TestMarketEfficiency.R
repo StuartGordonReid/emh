@@ -1,5 +1,3 @@
-
-
 #' @title Test whether or not a price series is random.
 #' @description This function performs a number of randomness tests on price data at different frequencies.
 #'
@@ -78,12 +76,16 @@ is_random <- function(S, a = 0.99,
   result.runs <- round(test_runs(r, a = a), 6)
   result.dw <- round(test_durbinwatson(r, a = a), 6)
   result.lb <- round(test_ljungbox(r, a = a), 6)
-  result.vr1 <- round(test_vratio_lo_mac(r, a =a), 6)
+  result.bg <- round(test_breuschgodfrey(r, a = a), 6)
+  results.br <- round(test_bartellrank(r, a = a), 6)
+  result.vr1 <- round(test_vratio_lo_mac(r, a = a), 6)
 
   # Add all of the results from the statistical tests together.
   results <- as.data.frame(t(data.frame(result.runs,
                                         result.dw,
                                         result.lb,
+                                        result.bg,
+                                        results.br,
                                         result.vr1)))
 
   # Construct a data frame with all the results and relevant information.
@@ -96,6 +98,8 @@ is_random <- function(S, a = 0.99,
   results$Test_Name <- c("Independent Runs",
                          "Durbin-Watson",
                          "Ljung-Box",
+                         "Breusch-Godfrey",
+                         "Bartell Rank",
                          "Variance-Ratio LoMac")
 
   # Return the results of the statistical tests in a nice table.

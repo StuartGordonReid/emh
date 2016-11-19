@@ -10,6 +10,7 @@ LazyData: TRUE
 Depends:
     zoo,
     lmtest,
+    randtests,
     lubridate,
     Quandl
 Imports:
@@ -27,6 +28,8 @@ Collate:
     'TestIndependentRuns.R'
     'TestDurbinWatson.R'
     'TestLjungBox.R'
-    'TestMarketEfficiency.R'
+    'TestBreuschGodfrey.R'
+    'TestBartellRank.R'
     'TestVarianceRatioLoMac.R'
+    'TestMarketEfficiency.R'
 RoxygenNote: 5.0.1

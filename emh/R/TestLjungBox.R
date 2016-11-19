@@ -1,9 +1,5 @@
-
-
 #' @title Ljung-Box portmanteau test that autocorrelations are non-zero.
 #' @description Performs a Ljung-Box to see if autocorrelations are non-zero.
-#'
-#' @details TODO
 #'
 #' @param rets numeric :: time series returns. May be a zoo or numeric vector.
 #' @param a numeric :: alpha. This controls the significance level of the results.

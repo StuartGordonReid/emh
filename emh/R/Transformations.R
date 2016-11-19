@@ -1,5 +1,3 @@
-
-
 as_levels <- function(logrets) {
   if (is.zoo(logrets)) {
     dates <- index(logrets)

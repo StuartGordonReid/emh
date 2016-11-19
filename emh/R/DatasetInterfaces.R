@@ -1,5 +1,3 @@
-
-
 data_quandl_indices <- function() {
   # List of Global Stock Market Indices / ETFs (where index not available)
   indices <- c("YAHOO/INDEX_DJI", # Dow Jones Industrial (USA)

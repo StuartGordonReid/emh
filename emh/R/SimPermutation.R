@@ -1,5 +1,3 @@
-
-
 #' @title Rolling Time Series Permutation.
 #' @description Produce a variation of the given time series by means of a rolling-window permutation transformation.
 #'
