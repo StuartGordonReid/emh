@@ -18,7 +18,7 @@ Let's first download some data,
 
 `stock_indices <- data_quandl_downloader(data_quandl_indices())`
 
-Noe let's get the stock market index of our choosing, the SATRIX Financials Index,
+Now let's get the stock market index of our choosing, the SATRIX Financials Index,
 
 `return_series <- indices$``GOOG/JSE_STXFIN```
 
