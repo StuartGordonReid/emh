@@ -189,7 +189,7 @@ as_interpolated <- function(logrets.zoo) {
 }
 
 
-#' @tile Converts returns to residual returns above the mean.
+#' @title Converts returns to residual returns above the mean.
 #' @description This function extracts the mean of the logarithmic returns from the log returns and then exponentiates
 #' back into the nominal return space. In other words, it extracts the continuously compounded mean return.
 #'
@@ -263,7 +263,7 @@ as_trend_rolling <- function(rets, w = 126) {
 #' one time period. It is a common procedure used in many statistical tests of randomness.
 #'
 #' @param rets zoo or numeric vector :: nominal returns of the asset
-#' @returns A zoo object or numeric vector containing the residuals from a regression.
+#' @return A zoo object or numeric vector containing the residuals from a regression.
 #'
 as_residuals_lm <- function(rets) {
   if (is.zoo(rets)) {
