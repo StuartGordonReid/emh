@@ -1,5 +1,3 @@
-
-
 #' @title Download a set of codes from Quandl.com.
 #' @description This function downloads a set of codes form Quandl.com. The best variable for each one of the datasets
 #' is extracted by defaults. For equity time series this usually corresponds to the adjusted close.
@@ -7,7 +5,7 @@
 #' @param codes character :: a list of characters containing codes.
 #' @return zoo :: A zoo object containing daily prices for each code.
 #'
-data.quandl.downloader <- function(codes) {
+data_quandl_downloader <- function(codes) {
   # The generic Quandl API key for TuringFinance.
   Quandl.api_key("t6Rn1d5N1W6Qt4jJq_zC")
   print("DOWNLOADING DATASETS ...")
@@ -38,5 +36,3 @@ data.quandl.downloader <- function(codes) {
   names(datasets) <- codes
   return(datasets)
 }
-
-

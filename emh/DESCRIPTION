@@ -28,5 +28,5 @@ Collate:
     'TestDurbinWatson.R'
     'TestLjungBox.R'
     'TestMarketEfficiency.R'
-    'WorkedExamples.R'
+    'TestVarianceRatioLoMac.R'
 RoxygenNote: 5.0.1

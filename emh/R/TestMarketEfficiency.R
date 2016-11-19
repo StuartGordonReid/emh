@@ -17,7 +17,7 @@
 #' @param freqs2 character :: A vector containing time-based downsampling frequencies.
 #' @return data.frame :: A data.frame containing all of the tabulated test results.
 #'
-is.random <- function(S, a = 0.99,
+is_random <- function(S, a = 0.99,
                       freqs1 = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
                       freqs2 = c("Mon", "Tue", "Wed", "Thu",
                                  "Fri", "Week", "Month")) {
@@ -27,7 +27,7 @@ is.random <- function(S, a = 0.99,
     stop("is.random only works with zoo time series.")
 
   # Extract the returns and log returns.
-  results <- list(); logrets <- as.logreturns(S)
+  results <- list(); logrets <- as_logreturns(S)
 
   # Create a progress bar.
   pb <- txtProgressBar(style = 3)
@@ -36,14 +36,14 @@ is.random <- function(S, a = 0.99,
   for (fq in freqs1) {
     # Downsample the data to this frequency.
     if (fq == 1) logrets.freq <- logrets
-    else logrets.freq <- suppressWarnings(as.frequency(logrets, fq))
+    else logrets.freq <- suppressWarnings(as_frequency(logrets, fq))
     logrets.freq <- na.omit(logrets.freq)
 
     # Construct the label for this frequency.
     fq.label <- paste("(t-", fq, " to t)", sep = "")
 
     # Run the tests at this frequency and add them to list.
-    result <- .run.tests(logrets.freq, fq.label, a)
+    result <- .run_tests(logrets.freq, fq.label, a)
     results[[length(results) + 1]] <- result
 
     # Update the progress bar.
@@ -52,14 +52,14 @@ is.random <- function(S, a = 0.99,
 
   for (fq in freqs2) {
     # Downsample the data to this frequency.
-    logrets.freq <- suppressWarnings(as.frequency(logrets, fq))
+    logrets.freq <- suppressWarnings(as_frequency(logrets, fq))
     logrets.freq <- na.omit(logrets.freq)
 
     # Construct the label for this frequency.
     fq.label <- paste("(", fq, " to ", fq, ")", sep = "")
 
     # Run the tests at this frequency and add them to list.
-    result <- .run.tests(logrets.freq, fq.label, a)
+    result <- .run_tests(logrets.freq, fq.label, a)
     results[[length(results) + 1]] <- result
 
     # Update the progress bar.
@@ -73,16 +73,18 @@ is.random <- function(S, a = 0.99,
 }
 
 
-.run.tests <- function(r, fq, a = 0.99) {
+.run_tests <- function(r, fq, a = 0.99) {
   # Run each one of the statistical tests on the returns.
-  result.runs <- round(test.runs(r, a = a), 6)
-  result.dw <- round(test.durbinwatson(r, a = a), 6)
-  result.lb <- round(test.ljungbox(r, a = a), 6)
+  result.runs <- round(test_runs(r, a = a), 6)
+  result.dw <- round(test_durbinwatson(r, a = a), 6)
+  result.lb <- round(test_ljungbox(r, a = a), 6)
+  result.vr1 <- round(test_vratio_lo_mac(r, a =a), 6)
 
   # Add all of the results from the statistical tests together.
   results <- as.data.frame(t(data.frame(result.runs,
                                         result.dw,
-                                        result.lb)))
+                                        result.lb,
+                                        result.vr1)))
 
   # Construct a data frame with all the results and relevant information.
   colnames(results) <- c("Statistic", "Two_sided_p", "Z_Score", "Non_Random")
@@ -93,7 +95,8 @@ is.random <- function(S, a = 0.99,
   # Add the test names to the data frame.
   results$Test_Name <- c("Independent Runs",
                          "Durbin-Watson",
-                         "Ljung-Box")
+                         "Ljung-Box",
+                         "Variance-Ratio LoMac")
 
   # Return the results of the statistical tests in a nice table.
   return(results[,c("Test_Name", "Frequency", "Sample_Size",

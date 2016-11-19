@@ -8,9 +8,9 @@
 #' @param rets numeric :: time series returns. May be a zoo or numeric vector.
 #' @param a numeric :: alpha. This controls the significance level of the results.
 #'
-test.durbinwatson <- function(rets, a = 0.99) {
+test_durbinwatson <- function(rets, a = 0.99) {
   # Check and convert the data.
-  .check.data(data = rets)
+  .check_data(data = rets)
   rets <- as.numeric(rets)
 
   # Now construct the data frame.
@@ -42,7 +42,7 @@ test.durbinwatson <- function(rets, a = 0.99) {
 }
 
 
-.test.durbinwatson.nop <- function(residuals) {
+.test_durbinwatson_nop <- function(residuals) {
   if (is.zoo(residuals)) {
     residuals <- as.numeric(residuals)
   } else if (!is.numeric(residuals)) {

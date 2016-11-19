@@ -1,6 +1,6 @@
 
 
-as.levels <- function(logrets) {
+as_levels <- function(logrets) {
   if (is.zoo(logrets)) {
     dates <- index(logrets)
     levels <- cAsLevels(as.numeric(logrets))
@@ -12,7 +12,7 @@ as.levels <- function(logrets) {
 }
 
 
-as.logreturns <- function(levels, order = 1) {
+as_logreturns <- function(levels, order = 1) {
   if (is.zoo(levels)) {
     dates <- index(levels)
     levels <- as.numeric(levels)
@@ -25,12 +25,12 @@ as.logreturns <- function(levels, order = 1) {
 }
 
 
-as.returns <- function(levels, order = 1) {
-  return(exp(as.logreturns(levels, order)) - 1)
+as_returns <- function(levels, order = 1) {
+  return(exp(as_logreturns(levels, order)) - 1)
 }
 
 
-as.binary <- function(rets) {
+as_binary <- function(rets) {
   if (is.zoo(rets)) {
     dates <- index(rets)
     rets <- as.numeric(rets)
@@ -42,9 +42,9 @@ as.binary <- function(rets) {
 }
 
 
-as.frequency <- function(logrets.zoo, frequency) {
+as_frequency <- function(logrets.zoo, frequency) {
   if (!is.zoo(logrets.zoo))
-    stop("as.frequency only works with zoo objects")
+    stop("as_frequency only works with zoo objects")
 
   if (frequency == 1)
     return(logrets.zoo)
@@ -74,7 +74,7 @@ as.frequency <- function(logrets.zoo, frequency) {
     return(zoo(rfreq, index(logrets.zoo)[seq(frequency, tau, frequency)]))
   } else  {
     # First interpolate so all dates are present.
-    logrets.zoo <- as.interpolated(logrets.zoo)
+    logrets.zoo <- as_interpolated(logrets.zoo)
 
     # Get the dates.
     tau <- length(logrets.zoo)
@@ -135,9 +135,9 @@ as.frequency <- function(logrets.zoo, frequency) {
 }
 
 
-as.interpolated <- function(logrets.zoo) {
+as_interpolated <- function(logrets.zoo) {
   if (!is.zoo(logrets.zoo))
-    stop("as.frequency only works with zoo objects")
+    stop("as_frequency only works with zoo objects")
 
   # First interpolate the time series so all dates are present.
   dates.all <- seq(start(logrets.zoo), end(logrets.zoo), by = "day")
@@ -149,7 +149,7 @@ as.interpolated <- function(logrets.zoo) {
 }
 
 
-as.residuals <- function(rets) {
+as_residuals <- function(rets) {
   dates <- NULL
   if (is.zoo(rets)) {
     dates <- index(rets)
@@ -167,7 +167,7 @@ as.residuals <- function(rets) {
 }
 
 
-as.residuals.rolling <- function(rets, w = 126) {
+as_residuals_rolling <- function(rets, w = 126) {
   dates <- NULL
   if (is.zoo(rets)) {
     dates <- index(rets)
@@ -182,7 +182,7 @@ as.residuals.rolling <- function(rets, w = 126) {
 }
 
 
-as.trend.rolling <- function(rets, w = 126) {
+as_trend_rolling <- function(rets, w = 126) {
   dates <- NULL
   if (is.zoo(rets)) {
     dates <- index(rets)
@@ -197,7 +197,7 @@ as.trend.rolling <- function(rets, w = 126) {
 }
 
 
-as.residuals.lm <- function(rets) {
+as_residuals_lm <- function(rets) {
   if (is.zoo(rets)) {
     rets.lagged <- lag(rets, -1)
     data <- merge(rets, rets.lagged)

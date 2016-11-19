@@ -9,7 +9,7 @@
 #' @param a numeric :: alpha. This controls the significance level of the results.
 #' @param n.lags numeric :: the number of lags to test up to.
 #'
-test.ljungbox <- function(rets, a = 0.99, n.lags = 15) {
+test_ljungbox <- function(rets, a = 0.99, n.lags = 15) {
   # Number of lags.
   k <- length(rets)
 

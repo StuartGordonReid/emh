@@ -18,7 +18,7 @@
 #'  \item{"Theorie de la speculation."}{Bachelier, Louis. Gauthier-Villars, 1900.}
 #' }
 #'
-simulate.brownianmotion <- function(n = 252, dt = 0.003968254, vol = 0.25, drift = 0.0) {
+simulate_brownianmotion <- function(n = 252, dt = 0.003968254, vol = 0.25, drift = 0.0) {
   # Simulate a Wiener process.
   wiener <- rnorm(n, 0, sqrt(dt) * vol)
 

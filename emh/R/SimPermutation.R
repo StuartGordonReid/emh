@@ -16,7 +16,7 @@
 #' available for the permutation: overlapping or non-overlapping. Overlapping permutations do not place a strict bound
 #' on the distance any two originally subsequent returns may be from one another in the permutated returns.
 #'
-simulate.permutation <- function(logrets, window, cluster = NULL, overlapping = FALSE) {
+simulate_permutation <- function(logrets, window, cluster = NULL, overlapping = FALSE) {
   tau <- length(logrets)
   if (overlapping) {
     logrets.vec <- as.vector(logrets)
