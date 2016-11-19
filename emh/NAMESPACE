@@ -1,0 +1,5 @@
+useDynLib(emh)
+import(Rcpp)
+import(lmtest)
+import(lubridate)
+exportPattern("^[[:alpha:]]+")

@@ -1,0 +1,19 @@
+---
+output: pdf_document
+---
+
+[//]: (Welcome! This is a comment that won't get compiled into the pdf / tex.)
+
+# Testing Market Efficiency with Autoencoders \label{chap:first}
+
+This chapter discusses the concepts of computability and how this relates to compression.
+
+## An Outline of the Proposed Test
+
+
+## The Short-term Shuffling Benchmark
+
+
+## Excess Compressibility of Security Returns
+
+

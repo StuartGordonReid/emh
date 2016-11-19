@@ -1,0 +1,269 @@
+---
+output: pdf_document
+---
+
+[//]: (Welcome! This is a comment that won't get compiled into the pdf / tex.)
+
+# Computability, Randomness, and Market Efficiency \label{chap:first}
+
+Market efficiency is an economic theory which posits that financial markets accurately and instantaneously incorporate all information about a security into the current price of that security. If true, it follows that security prices should be well described by a random walk model `r Cite(bib, "Fama1965", .opts = list(hyperlink = "to.doc"))`. The objective of this chapter is threefold,
+
+1. Introduce the Random Walk and Efficient Market Hypotheses,
+2. Relate computability theory to market efficiency, and
+3. Provide a comprehensive list of market efficiency tests,
+
+In chapter three, each market efficiency test will be explained in detail and a simple binary classification experiment will be conducted. This experiment will involve using each test to determine whether a set of random and non-random benchmarks are or aren't random. The objective of the experiment is to measure each tests' accuracy, error rate, true positive rate, false negative rate, precision, and prevalence using a confusion matrix.
+
+## Random Walks and Market Efficiency
+
+### Early Empirical Evidence of Random Walks
+
+Markets are a mechanism which match buyers and sellers with one another in order to facilitate the exchange of items called securities. According to general equilibrium theory, the price at which a security is exchanged is "discovered" through the economic forces of supply and demand for that security by market participants. In a functioning market the price tends towards equilibrium; the point at which supply equals demand.
+
+The behaviour of security prices is a matter of great interest to academics and practitioners who wish to either model or forecast them. In 1900 Bachelier published his PhD thesis in which he proposed that a _fundamental property_ of security prices was that they could be well described by a random walk. A random walk is a stochastic process wherein no knowledge of historical events can possibly help to predict the event `r Cite(bib, "Bachelier1900", .opts = list(hyperlink = "to.doc"))`. 
+
+Bachelier's thesis was largely ignored until this "random property" of security prices was independently rediscovered by Kendall in 1953 `r Cite(bib, "Kendall1953", .opts = list(hyperlink = "to.doc"))`. Kendall's study sparked a wave of publications about randomness in security prices `r Cite(bib, "Osborne1959", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Roberts1959", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Alexander1961", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Cootner1962", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Osborne1962", .opts = list(hyperlink = "to.doc"))`. It wasn't until the mid-1960's that Samuelson `r Cite(bib, "Samuelson1965", .opts = list(hyperlink = "to.doc"))` formalized this weight of evidence and presented it as a coherent framework which we now call the Random Walk Hypothesis.
+
+### The Random Walk Hypothesis
+
+Let $\{s_{t} = ln S_{t}, t \in \tau\}$ denote the log price process of the security through time and let $\{r_{t}, t \in \tau\}$ denote the returns process of the security through time where,
+
+\begin{equation}
+r_{t} = \Delta s_{t} = s_{t} - s_{t-1}, t \in \tau\
+\end{equation}
+
+The Random Walk Hypothesis simply posits that $r_{t}$ is an independent random variable and therefore $s_{t}$ and $S_{t}$, by extension, are random walks. A random walk is an unpredictable sequence in which no discernable patterns, often called signals, exist.
+
+A number of specific random walk models have been proposed for modelling security prices since Bachelier's original study. These models can be taxonomized according to two important assumptions: _independence_ and _distribution_ `r Cite(bib, "Andreou2001", .opts = list(hyperlink = "to.doc"))`. 
+
+#### Independence
+
+Independence means that future price change are unconditional on previous price changes. A sequence can only be called a random walk if it is independent. 
+
+\subsubsection*{The Martingale Model}
+
+Bachelier proposed the first model of security prices which assumes this kind of independence. Bachelier's model came to be known as a Maringale. A Martingale is a model of a fair game in which no knowledge of historical events can help to predict future events.
+
+The Martingale model of security prices is given below,
+
+\begin{equation}
+\mathbf{E}[r_{t} | \{r_{t-1}, ..., r_{0}\}] = 0
+\end{equation}
+
+Or equivalently,
+
+\begin{equation}
+\mathbf{E}[s_{t} | \{s_{t-1}, ..., s_{0}\}] = s_{t-1} + \mathbf{E}[r_{t} | \{r_{t-1}, ..., r_{0}\}] = s_{t-1}
+\end{equation}
+
+Because the probability that the price at time $t + n$, $s_{t + n}$, is a function of current price at time $t$, $s_{t}$, this introduces a Markov-type "dependence" into the log price process `r Cite(bib, "Andreou2001", .opts = list(hyperlink = "to.doc"))`.
+
+\subsubsection*{The Submartingale Model}
+
+An implication of assuming security price changes are a Martingale is that the long-run expected return of any market participant is zero. This property, whilst consistent with Bachelier's understanding of the market as a fair game, is inconsistent with modern portfolio theory which asserts a fundamental relationship between risk and return `r Cite(bib, "Markowitz1952", .opts = list(hyperlink = "to.doc"))`.
+
+Fama overcame this limitation by proposing that security prices are a Submartingale. A Submartingale is a Martingale which tends to increase over time albeit not by any determinable or even constant amount `r Cite(bib, "Fama1965", .opts = list(hyperlink = "to.doc"))`. As such, the sequence remains independent which also explaining why investors are rewarded for taking risk in the long run.
+
+The Submartingale model of security prices is given below,
+
+\begin{equation}
+\mathbf{E}[r_{t} | \{r_{t-1}, ..., r_{0}\}] \geq 0
+\end{equation}
+
+Or equivalently,
+
+\begin{equation}
+\mathbf{E}[s_{t} | \{s_{t-1}, ..., s_{0}\}] \geq s_{t-1}
+\end{equation}
+\begin{equation}
+\text{since } s_{t} = s_{t-1} + r_{t-1} \text{ and } \mathbf{E}[r_{t} | \{r_{t-1}, ..., r_{0}\}] \geq 0
+\end{equation}
+
+In addition to the above Submartingale model, it is also possible to construct a Martingale model which decreases in value over time. This model, called a Supermartingale, is, however, not used for modelling security prices because it violates the fundamental relationship between risk and return proposed by Modern Portfolio Theory.
+
+#### Distribution
+
+The distribution of a random variable is a function which assigns probabilities to outcomes. Neither the Martingale nor Submartingale model make any prior assumptions about the distribution of security price changes. As such, these models are strictly theoretical. In order to construct useful random walk models for describing security prices further assumptions about the distribution of those price changes need to be made. 
+
+A number of practical random walk models are described below. These random walk models are categorized as identically distributed or not identically distributed. Identically distributed random walks are ones in which the distribution, or parameters of the distribution, do not change with time. Not identically distribution random walks are ones in which the distribution or parameters of the distribution change with time.
+
+\subsubsection*{Independent and Identically Distributed (i.i.d)}
+
+**_The Gaussian Random Walk Hypothesis_**
+
+The Normal Random Walk was the first independent and identically distributed (i.i.d) model of security prices. It was proposed by Kendall in 1953 `r Cite(bib, "Kendall1953", .opts = list(hyperlink = "to.doc"))` and Roberts in 1959 `r Cite(bib, "Roberts1959", .opts = list(hyperlink = "to.doc"))`. The Normal Random Walk assumes that security price changes are sampled from a Gaussian distribution with a constant variance and mean equal to zero,
+
+\begin{equation}
+r_{t} \sim \mathcal{N}(0, \sigma^2)
+\end{equation}
+
+This model is also known as Brownian Motion after the famous Botanist, Robert Brown, or a Wiener Process after Norbert Wiener, a famous American mathematician.
+
+A modification of the Normal Random Walk, called Geometric Brownian Motion, was proposed by Samuelson in 1965 `r Cite(bib, "Samuelson1965", .opts = list(hyperlink = "to.doc"))`. Geometric Brownian Motion is a Normal Random Walk with a non-zero, usually positive mean. Geometric Brownian Motion was later used as the theorical foundation of the famous Black-Scholes options pricing model `r Cite(bib, "Black1973", .opts = list(hyperlink = "to.doc"))`.
+
+Brownian Motion is an example of a Martingale process whereas Geometric Brownian Motion with a non-zero, positive mean is an example of a Submartingale process. The assumption that security price changes are normally distributed with any constant mean and constant variance is known as the _Gaussian Random Walk Hypothesis_.
+
+**_The Stable Paretian Random Walk Hypothesis_**
+
+A number of early publications which proposed the Gaussian Random Walk Hypothesis observed that the distribution of security price changes demonstrates excess leptokurticity `r Cite(bib, "Kendall1953", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Cootner1964", .opts = list(hyperlink = "to.doc"))`. Leptokurtic normal distributions assign higher probabilities to events close to the mean and higher probabilities to events in the tails. This inconsistency with the Gaussian Random Walk Hypothesis was ignored at the time due to a misinterpretation of the central limit theorem when applied to cumulative weekly or monthly returns `r Cite(bib, "Andreou2001", .opts = list(hyperlink = "to.doc"))`.
+
+This inconsistency is shown below for S&P 500 returns from 1950 to the present day. To make the plot more visible, returns above 7.5% and below -7.5% were removed \footnote{Nine dates were removed: 1987-10-21 (+9\%), 2008-10-13 (+11\%), 2008-10-28 (+10\%), 1987-10-19 (-23\%), 1987-10-26 (-9\%), 2008-09-29 (-9\%), 2008-10-09 (-8\%), 2008-10-15 (-9\%), and 2008-12-01 (-9\%)}.
+
+```{r fig.cap = "Kernel density plots of security price changes observed on the S&P 500 index demonstrate statistically significant levels of leptokurticity. \\label{fattails}"}
+# Load Quandl and set the API key.
+library(Quandl); Quandl.api_key("t6Rn1d5N1W6Qt4jJq_zC")
+sp500 <- Quandl("YAHOO/INDEX_GSPC", type = "zoo")
+
+# Get the adjusted closing prices and compute the returns.
+sp500 <- sp500[ ,which(colnames(sp500) == "Adjusted Close")]
+sp500.rets <- log(sp500 / lag(sp500, -1))
+
+# Load EMH and plot the histogram
+library(emh); emh::plot.fattails(sp500.rets)
+```
+
+In the 1960's Mandelbrot published a number of influential papers which argued that the degree of leptokurticity in security price changes was understated and that leptokurticity represented a significant departure from the Gaussian Random Walk Hypothesis. Mandelbrot also showed that security price changes were better characterized by a stable paretian distribution with infinite variance `r Cite(bib, "Mandelbrot1963", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Mandelbrot1964", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Mandelbrot1966", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Mandelbrot1967", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Mandelbrot1969", .opts = list(hyperlink = "to.doc"))`. Mandelbrot's proposal came to be known as the _Stable Paretian Random Walk Hypothesis_.
+
+A paretian distribution is characterized by four parameters: $\alpha$, called the _characteristic exponent_ determines the peakedness of the distribution, $\beta$ which determines the skewness of the distribution, $\lambda$ which is a scaling parameter, and finally $\delta$ which determines the location of the distribution. The value of the characteristic exponent must lie between zero and two, $\alpha \in (0, 2)$. When $\alpha$ is between one and two, $\alpha \in (1, 2)$, the resulting distribution is _stable_ and is often called a Pareto-Levy distribution. When $\alpha$ is equal to two, then the resulting distribution is approximately normal `r Cite(bib, "Fama1963", .opts = list(hyperlink = "to.doc"))`. 
+
+A number of studies tested whether or not the characteristic exponent of a paretian distribution, when fitted to security price changes, was statistically significantly different to two. This was found to be true meaning that security price changes are not normally distributed and are better approximated by a Pareto-Levy distribution `r Cite(bib, "Fama1963", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Fama1965", .opts = list(hyperlink = "to.doc"))`.
+
+However, because the variance in a pareto-levy distribution can be infinite \footnote{The variance does not converge to a stable estimate as the sample size increase}, the stable paretian random walk hypothesis is inconsistent with modern portfolio theory which depends on the variance being a well defined quantity `r Cite(bib, "Fama1965", .opts = list(hyperlink = "to.doc"))`. This prompted a number of authors to test the stable paretian random walk hypothesis more carefully.
+
+An important property of the paretian distribution is that the characteristic exponent is invariant in the sampling interval. A number of studies have shown that this invariance property is violated by security returns `r Cite(bib, "Officer1972", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Blattberg1974", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Akgiray1988", .opts = list(hyperlink = "to.doc"))`. This observation, coupled with the implications for financial analysis if true, meant that whilst the gaussian random walk hypothesis was firmly rejected, so too was the stable paretian random walk hypothesis.
+
+**_Alternative Leptokurtic Random Walk Hypotheses_**
+
+As of the early 1980's the Gaussian Random Walk Hypothesis and Stable Paretian Random Walk Hypothesis had been firmly rejected and a number of alternative, non-normal, leptokurtic distributions were left standing in their place. These distributions included, but were not limited to, mixtures of normal distributions `r Cite(bib, "Praetz1972", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "DuMouchel1973", .opts = list(hyperlink = "to.doc"))`, the Student's $t$ distribution `r Cite(bib, "Blattberg1974", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Hagerman1972", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Lau1990", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Tucker1992", .opts = list(hyperlink = "to.doc"))`, and, more recently, the Weibull distribution `r Cite(bib, "Mittnik1991", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Mittnik1993", .opts = list(hyperlink = "to.doc"))`. 
+
+However, whilst these distributions can model _excess leptokurticity_ they are not able to model additional stylized facts observed in security return processes such as _volatility clustering_ and _conditional heteroscedasticity_. This is discussed in the next section.
+
+\subsubsection*{Independent and Not-Identically Distributed (INID)}
+
+An important empirical observation which has challenged the assumption that security price changes are identically distributed through time, regardless of what distribution is assumed \footnote{Whilst the stable paretian random walk hypothesis can model excess leptokurticity in security price changes, it cannot model volatility clustering.}, is _volatility clustering_. Volatility clustering is the name given to the phenomenon whereby large price changes, of either sign, tend to be clustered close together in time `r Cite(bib, "Engle1982", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Brock1994", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Bollerslev1994", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Andersen1997", .opts = list(hyperlink = "to.doc"))`. This observation implies that the variance of security price changes is _not constant_ and, as such, represents a violation of the IID random walk hypothesis. This can be seen in the rolling 30-day annualized volatility of the S&P 500:
+
+```{r fig.pos="H", fig.cap = "The Rolling 30-day Annualized Volatility of the S&P 500 clearly shows how volatility is clustered locally across time. \\label{stochvol}"}
+emh::plot.rollvol(sp500.rets)
+```
+
+A number of independent and not identically distributed (INID) random walk models which can model this phenomena have been proposed. These models can be classified as either _unconditional stochastic volatility models_ or _conditional heteroscedasticity models_.
+
+**_Unconditional Stochastic Volatility Models_**
+
+TODO
+
+**_Conditional Heteroscedasticity Models_**
+
+TODO
+
+### The Efficient Market Hypothesis
+
+Formal efficient market hypothesis ...
+
+Security prices are "approximately random" ...
+
+Discuss the relationship between risk and return ...
+
+Discuss the definition of abnormal returns ...
+
+#### Developments owing to EMH
+
+List the cool stuff prompted by EMH ...
+
+## Computability Theory and Market Efficiency
+
+Introduction to section ...
+
+### Computability, Compression, and Randomness
+
+Define effective computability ...
+
+Explain how computability implies compressibility ...
+
+Explain how non-compressibility implies randomness ...
+
+### Non-compressibility, and Market Efficiency
+
+Explain that non-compressibility does not imply efficiency ...
+
+Explain how to extract forecasts from compression scheme ...
+
+## A List of Market Efficiency Tests
+
+Market efficiency is a topic of great interest to academics and practitioners. As such, many tests of market efficiency have been proposed. These tests are either empirical (based on observations) or statistical tests of the randomness of historic security price changes. Empirical tests are usually based on observations such as fund (under)performance `r Cite(bib, "Cowles1933", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Sharpe1966", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Jensen1968", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Malkiel1995", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Malkiel2005", .opts = list(hyperlink = "to.doc"))`, asset pricing model accuracy `r Cite(bib, "Cohen1972", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Galai1977", .opts = list(hyperlink = "to.doc"))`, and various market anomalies such as value, momentum, and mean-reversion `r Cite(bib, "Fama1993", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Amihub2002", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Jegadeesh1993", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Jegadeesh2001", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Cahart1997", .opts = list(hyperlink = "to.doc"))`. 
+
+Statistical tests of market efficiency, on the other hand, attempt to measure the randomness of security price changes. Statistical tests which assume that $r_{t}$ is sampled a specific distribution are called _parametric tests_ and ones which do not are called _nonparametric tests_. Nonparametric tests may also be _approximate_ or _exact_ tests. Exact nonparametric tests usually employ a resampling or permutation method and are appropriate for _small and large sample sizes_, unlike approximate nonparametric tests which usually require some minimum sample size before the results are considered significant.
+
+### Unit Root Tests
+
+There are two forms of time series stationarity: trend-stationary and difference-stationary. The difference between them is how the time series reacts to a discontinuity in its value. If the time series is trend-stationary the impact of the discontinuity will be temporary because the time series will revert back to its long-run trend. If the time series is difference stationary then the impact of the discontinuity will be permanent because the time series does not have a trend to revert back to and is said to have a unit root.
+
+If a financial time series is trend-stationarity it is mean-reverting in the presence of discontinuities. This property of the time series can be exploited by a trading strategy which enters into a trade when the security experiences a discontinuity and exits the trade when the security has reverted back to the mean. This is the basis of a popular contrarian trading strategy called relative value arbitratge or pairs trading `r Cite(bib, "Gatev2006", .opts = list(hyperlink = "to.doc"))`.
+
+Assuming that the trend can be approximately modelled (in other words, it isn't totally stochastic), the trend persists, and that discontinuities can be reliably identified when they occur then such contrarian strategies will produce abnormal returns. Because this is inconsistent with the weak-form Efficient Market Hypothesis, some academics have argued that security prices in an efficient market must contain a unit root `r Cite(bib, "Hakkio1989", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Chan1997", .opts = list(hyperlink = "to.doc"))`.
+
+Following this logic, some studies of market efficiency are based on unit root tests. Statistical unit root tests include the Augmented Dickey-Fuller test `r Cite(bib, "Dickey1979", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Dickey1981", .opts = list(hyperlink = "to.doc"))`, the Phillips–Perron test `r Cite(bib, "Phillips1988", .opts = list(hyperlink = "to.doc"))`, the KPSS test `r Cite(bib, "KPSS1992", .opts = list(hyperlink = "to.doc"))`, the ADF-GLS test `r Cite(bib, "ERS1992", .opts = list(hyperlink = "to.doc"))`, and the Zivot–Andrews test `r Cite(bib, "Zivot1992", .opts = list(hyperlink = "to.doc"))`.
+
+### Runs Tests
+
+The runs test, also called the Wald-Wolfowitz test, is a non-parametric statistical test of mutual independence. In the context of security prices, price changes greater than or equal to zero and price changes less than zero may be encoded as $+$ and $-$. A run is then defined as a sequence of identical symbols. For example, the sequence $++----++----++$ has the following five runs: $\{++, ----, ++, ----, ++\}$.
+
+Assuming the probability of observing a $+$ or $-$ is uncoditional on previous observations then the number of runs in a sequence of $N$ symbols is a random variable whose conditional distribution given $N^{+}$ $+$ symbols and $N^{-}$ $-$ symbols is approximately normal `r Cite(bib, "Wald1940", .opts = list(hyperlink = "to.doc"))`. This runs test has been used in a number of market efficiency studies `r Cite(bib, "Fama1965", .opts = list(hyperlink = "to.doc"))`.
+
+In addition to the _number of runs_, given $N$, $N^{+}$, and $N^{-}$ the expected _length of the longest run_ of either $+$ or $-$ symbols can be derived `r Cite(bib, "Mosteller1941", .opts = list(hyperlink = "to.doc"))`. This is called the longest runs test. The longest runs test has not been as extensively used in market efficiency studies.
+
+### Variance Ratio Tests
+
+A well-known characteristic of random walks is that the variance of observations scales linearly in the sampling interval. For example, the variance of prices sampled every five-days, $\sigma_5$, should be approximately five-times larger than the variance of prices samples every day, $\sigma$. As such, the ratio of $5\sigma_5$ to $\sigma$ in this example should tend to 1 for sufficiently large sample sizes. Tests based on this characteristic are called variance ratio tests.
+
+The first variance ratio test of the Random Walk Hypothesis was proposed by Lo and MacKinlay in 1988 `r Cite(bib, "LoMac1988", .opts = list(hyperlink = "to.doc"))`. Their test, called the heteroscedasticity-consistent variance ratio test, is a powerful parametric test of market efficiency. However, because the test is parameteric a rejection of the null hypothesis has two possible interpretations:
+
+1. Security prices cannot be descibed by a random walk, or
+2. Security prices can be described by an explosive random walk (a random walk where the distribution of security price changes has infinite variance).
+
+The second interpretation is consistent with the version of the Random Walk Hypothesis proposed by Mandelbrot called the Stable Paretian Hypothesis. Mandelbrot posited that security price changes are better described by distributions with infinite variance, which he called Stable Parentian distributions, than distributions with finite-variance such as the Gaussian Distribution `r Cite(bib, "Mandelbrot1997", .opts = list(hyperlink = "to.doc"))`. Some studies have provided evidence in favour of the Stable Paretian Hypothesis but the hypothesis was never widely accepted \footnote{Most probably due to its sweeping implications for derivatives pricing and portfolio selection.}.
+
+In response to these (and other) shortcomings with Lo and MacKinlay's variance ratio test Chow and Denning proposed the multiple variance ratio test in 1993 `r Cite(bib, "Chow1993", .opts = list(hyperlink = "to.doc"))`. In 2000 two non-parametric versions of the variance ratio test based on ranks and signs were proposed by Wright `r Cite(bib, "Wright2000", .opts = list(hyperlink = "to.doc"))`.  In 2004 Belaire-Franch and Contreras combined these ideas and proposed two multiple variance ratio tests based on ranks and signs `r Cite(bib, "Contreras2004", .opts = list(hyperlink = "to.doc"))`.
+
+### Compression Tests
+
+The relationship between computability, compression, and randomness was introduced in section one of this chapter. In section one we explained that if a sequence is effectively computable then there exists a program (or function) which:
+
+1. Is shorter than the sequence and,
+2. Can reproduce that sequence.
+
+Becase the program is shorter than the sequence, one can say that the sequence has been _compressed_. Truly random sequences are not computable, therefore they are also not compressible. If a sequence can be compressed, it is not truly random. The name given to this idea is Kolmorogov Complexity. However, due to the halting problem Kolmorogov Complexity is intractable. Nevertheless, compressibility has inspired a number of market efficiency tests which we call compression tests. All compression tests must make one or more simplifying assumptions about the data in order to be tractable.
+
+Compression tests include the linear complexity test ...
+
+### Exact Tests
+
+### Other Randomness Tests
+
+Mention some randomness tests not used in the literature ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

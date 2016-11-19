@@ -1,0 +1,162 @@
+---
+output: pdf_document
+---
+
+<!-- More LATEX taken from Will's MSc Dissertation template. 
+Link: http://cirg.cs.up.ac.za/visitPage.php?pageID=17060 -->
+
+\newlength{\negativetitlepageoffset}
+\setlength{\negativetitlepageoffset}{-5cm}
+
+\begin{titlepage}
+	\ \vspace{\negativetitlepageoffset}
+	\vspace{\stretch{1}}
+	\setlength{\baselineskip}{2.4\originalbaselineskip}
+	\begin{center}
+		\textsf{\huge An Exact Test of Market Efficiency using Online Machine Learning}
+	\end{center}
+	\begin{center}
+		\textsf{by}
+	\end{center}
+	\begin{center}
+		\textsf{\large Stuart Gordon Reid}
+	\end{center}
+	\vspace{\stretch{1}}
+	\setlength{\baselineskip}{1.3\originalbaselineskip}
+	\begin{center}
+		\textsf{Submitted in partial fulfilment of the requirements for the degree\\
+		Master of Science (Computer Science)\\
+		in the Faculty of Engineering, Built Environment and Information Technology\\
+		University of Pretoria, Pretoria}
+	\end{center}
+	\vspace{0.15cm}
+	\centerline{
+		\textsf{Today's Date}
+	}
+\end{titlepage}
+
+\pagestyle{empty}
+\newpage
+
+\textsf{\small
+	\vfill
+	\noindent Publication data:\\*[2.5mm]
+	\parbox{\textwidth}{
+		\fontsize{9}{10pt}
+		\selectfont
+		Stuart Reid. An Exact Test of Market Efficiency using Online Machine Learning. Master's dissertation, University of Pretoria, Department of Computer Science, Pretoria, South Africa, October 2016.
+	}\\*[10.5mm]
+	Electronic, hyperlinked versions of this dissertation are available online, as Adobe PDF files, at:\\*[2.5mm]
+	\parbox{\textwidth}{
+		\fontsize{9}{9.5pt}
+		\selectfont
+		\url{http://cirg.cs.up.ac.za/}\\*[1.5mm]
+		\url{http://upetd.up.ac.za/UPeTD.htm}
+	}
+}
+
+
+\newpage
+
+\begin{center}
+	{\large\bf An Exact Test of Market Efficiency using Online Machine Learning}
+\end{center}
+\begin{center}by\end{center}
+\begin{center}
+	{Stuart Reid}\\
+	\ifpdf
+		E-mail: \href{mailto:stuartgordonreid@gmail.com}{stuartgordonreid@gmail.com}
+	\else
+		E-mail: stuartgordonreid@gmail.com
+	\fi
+\end{center}
+\vspace{1cm}
+\begin{center}{\large\bf Abstract}\end{center}
+
+The weak-form Efficient Market Hypothesis states that in an efficienct market all historical prices for a given security are already reflected in that security's current price. As such, security price changes in an efficient market are described by an independent and identically distributed random walk. This implication is called the Random Walk Hypothesis and of its two assumptions, independence is the most important. In this dissertation we propose an exact test of market efficiency which measures the excess compressibility of in-order security price changes against variations of those security price changes obtained using a modified permutation technique. This technique permutes security price changes within a rolling window so that the underlying distribution is preserved over the full time frame and shorter time frames as well. This technique is preferable because it preserves well-known characteristics of financial time series including bull markets, market crashes, and volatility clustering. In our implementation compressibility is estimated using Deep Autoencoder Neural Networks trained in an online fashion. Online Deep Autoencoder Neural Networks are employed because of their ability to extract non-linear features from complex and dynamic data sets such as security price changes. This test was applied to global stock market indices and statistically significant levels of short-term dependence was found to exist in price changes. The economic significance of these dependencies is demonstrated in this dissertation by means of a simple trading strategy.
+
+<!-- The weak-form of the Efficient Market Hypothesis (EMH) posits that markets accurately incorporate all historical price data for a given security into the most-recent price of that security. If true, EMH implies that, with respect to only historical price data, the evolution of a security's price through time is a Markov process. This consequent is called the Random Walk Hypothesis and it is the basis of all specification-based, statistical tests of market efficiency. Specification tests involve specifying a Markov process, deriving an expected value for that process, and testing for that value in the security's price. If it exists, then the security's price can be described by the specified Markov process, otherwise, it cannot. The negative result does not imply that security's prices are not random, but rather that they aren't the type of randomness specified in the test. In this dissertation we introduce a specification-free test of market efficiency which uses Autoencoder Neural Networks to measure the excess compressibility of a security's price against variations of that security's price obtained using a novel technique we propose called short-term price shuffling (STPS). STPS shuffles time-chunks of price data such that any short-term temporal structure in the data is destroyed and any long-term temporal structure in the data as well as the distribution of the data are preserved. We apply this test to twenty global indices and find that statistically and economically significant excess compressibility exists. From this we conclude that, contrary to the weak-form of the Efficient Market Hypothesis, exploitable, short-term temporal structures do exist in price data. -->
+
+\noindent\
+
+\noindent{\bf Keywords:} First keyword, second keyword, final keyword.
+
+\vfill
+\noindent
+
+
+\newpage
+
+\ \vspace{\stretch{1}}
+
+\begin{quotation}
+``We're all mad here.''
+\end{quotation}
+\begin{flushright}
+Lewis Carol (1865)
+\end{flushright}
+
+\vspace{1cm}
+
+
+\ \vspace{\stretch{1}}
+
+\newpage
+
+\begin{center}{\Large\bf Acknowledgements}\end{center}
+
+\vspace{0.3cm}
+
+\noindent If you wish to include any acknowledgements to anyone you feel was instrumental in the completion of the dissertation (or your continued survival through it's completion):
+\begin{itemize}
+	\item First person (or institution) you'd like to thank, and reasons;
+
+	\item Second person (or institution), and reasons;
+
+	\item Final person (or institution), and reasons.
+\end{itemize}
+
+
+\cleardoublepage
+\pagestyle{plain}
+\pagenumbering{roman}
+\setcounter{page}{1}
+\ifpdf
+\pdfbookmark[0]{Contents}{contents}
+\fi
+\tableofcontents
+
+
+\cleardoublepage
+\ifpdf
+\phantomsection
+\fi
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+
+\cleardoublepage
+\ifpdf
+\phantomsection
+\fi
+\addcontentsline{toc}{chapter}{List of Graphs}
+\listof{graph}{List of Graphs}
+
+
+\cleardoublepage
+\ifpdf
+\phantomsection
+\fi
+\addcontentsline{toc}{chapter}{List of Algorithms}
+\listof{algorithm}{List of Algorithms}
+
+
+\cleardoublepage
+\ifpdf
+\phantomsection
+\fi
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+<!-- End of LATEX taken from Will's MSc Dissertation template. 
+Link: http://cirg.cs.up.ac.za/visitPage.php?pageID=17060 -->

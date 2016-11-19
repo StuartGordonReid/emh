@@ -1,0 +1,190 @@
+---
+bibliography: ./bibtex/library.bib # Path to the bibtex file.
+fontsize: 12pt
+linestretch: 1.3 
+geometry: top=1.75in,left=1in,right=1in,bottom=1.75in # Backed out from LaTeX PDF output.
+header-includes:
+- \usepackage{url}
+- \usepackage{float}
+- \usepackage{amssymb}
+- \usepackage{amsmath}
+- \usepackage{makeidx}
+- \usepackage{fancyhdr}
+- \usepackage{verbatim}
+- \usepackage{pdfpages}
+- \usepackage{epstopdf}
+- \usepackage{hyperref}
+- \usepackage{pdflscape}
+- \usepackage[all]{hypcap}
+- \usepackage[pdftex]{thumbpdf}
+- \usepackage{./styles/texnames}
+- \usepackage[number=none]{./styles/glossary}
+linkcolor: blue
+urlcolor: blue
+documentclass: report
+classoption: a4paper,oneside
+output:
+  pdf_document:
+    fig_caption: yes
+    number_sections: yes
+    keep_tex: false # Change this to true if you want the output compiled .tex (useful for debugging).
+  html_document: default # Compiling to HTML does not work properly (yet).
+---
+
+
+```{r global_options, include=FALSE}
+# This knitr code is required to compile to PDF.
+knitr::opts_chunk$set(fig.path = 'figures/',
+                      fig.pos = 'h',
+                      echo = FALSE, 
+                      warning = FALSE, 
+                      message = FALSE)
+```
+
+
+```{r setup, include = TRUE, cache = FALSE}
+# RefManageR allows you to manage citations and references from your bibtex. 
+# Currently the inline numeric links are not working, they link to the top of the document?
+library(RefManageR)
+bib <- ReadBib("./bibtex/library.bib")
+BibOptions(check.entries = FALSE, 
+           style = "markdown", 
+           bib.style = "numeric", 
+           cite.style = "numeric")
+```
+
+
+<!-- LATEX taken from Will's MSc Dissertation template. 
+Link: http://cirg.cs.up.ac.za/visitPage.php?pageID=17060 -->
+\hypersetup{
+	pdfhighlight=/N,
+	pdffitwindow=true,
+	pdfstartview=Fit,
+	plainpages=false,
+	breaklinks=true,
+	colorlinks=true,
+	pageanchor=false,
+	linkcolor=blue,
+	citecolor=blue,
+	filecolor=blue,
+	menucolor=blue,
+	pagecolor=blue,
+	urlcolor=blue,
+}
+
+
+\hypersetup{
+	pdftitle    = {Title},
+	pdfauthor   = {Name Surname <name@gmail.com>},
+	pdfsubject  = {Subject},
+	pdfkeywords = {Something, Some other thing},
+}
+
+
+\pdfadjustspacing=1
+
+
+\setlength{\textwidth}{158mm}
+\setlength{\headheight}{15pt}
+\setlength{\unitlength}{1pt}
+\setlength{\footnotesep}{5mm}
+
+
+\newlength{\originalbaselineskip}
+\setlength{\originalbaselineskip}{\baselineskip} \linespread{1.3}
+
+
+\newcounter{listcount}
+
+
+\renewcommand{\glossaryname}{Acronyms}
+\renewcommand{\gloskip}{}
+\setlength{\namewidth}{79pt}
+
+
+\newcommand{\idxbf}[1]{\textbf{\hyperpage{#1}}}
+
+
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.0}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.9}
+
+
+\newfloat{graph}{tbp}{lgf}
+\floatname{graph}{Graph}
+
+
+\newfloat{algorithm}{tbp}{loa}
+\floatname{algorithm}{Algorithm}
+
+
+\setcounter{topnumber}{1}
+\setcounter{bottomnumber}{0}
+
+
+\newlength{\abovesubfiglabelskip}
+\setlength{\abovesubfiglabelskip}{0.5\abovecaptionskip}
+
+
+\newacronym{ANN}{Artificial Neural Network}{name=ANN, description=Artificial Neural Network}
+
+
+\index{ANN|see{Artificial Neural Network}}
+
+
+<!-- Include the cover page which includes abstract and stuff. -->
+```{r child = './front.Rmd'}
+```
+
+
+\hypersetup{pageanchor=true}
+\pagestyle{fancy}
+\fancypagestyle{headings}{
+	\fancyhead[RO,LE]{\thepage}
+	\fancyhead[LO]{\sf\nouppercase{\leftmark}}
+	\fancyhead[RE]{\sf\nouppercase{\rightmark}}
+	\fancyfoot{}
+	
+	\renewcommand{\headrulewidth}{0.4pt}
+}
+
+
+<!-- Include chapter 0 a.k.a the introduction -->
+```{r child = './chapters/chapter0.Rmd'}
+```
+
+
+<!-- Include chapter one. -->
+```{r child = './chapters/chapter1.Rmd'}
+```
+
+
+<!-- Include chapter two. -->
+```{r child = './chapters/chapter2.Rmd'}
+```
+
+
+<!-- Include chapter two. -->
+```{r child = './chapters/chapter3.Rmd'}
+```
+
+
+<!-- Include chapter two. -->
+```{r child = './chapters/chapter4.Rmd'}
+```
+
+
+\cleardoublepage
+\phantomsection
+
+
+\chapter*{Bibliography}\label{bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{plain}
+\bibliography{dissertation}
+
+
+```{r results = "asis", echo = FALSE}
+PrintBibliography(bib, .opts = list(check.entries = FALSE, sorting = "ynt"))
+```

@@ -1,0 +1,110 @@
+
+
+<!-- ## Introduction to Market Efficiency -->
+
+<!-- ### The Random Walk Hypothesis -->
+
+<!-- Markets are a mechanism which match sellers and buyers in order to facilitate the exchange of items called securities. At each point in time, a security's price is "discovered" by the forces of supply and demand for that security by market participants. Put simply, a security's price is the price at which there exist willing sellers and willing buyers.  -->
+
+<!-- Markets are also an example of a zero-sum game because the profits or losses of one participant must be matched perfectly by the losses or gains of another participant. Early random walk theories for security prices were influenced by models of games of chance.  -->
+
+<!-- One of the first publications which suggested that security prices could be modelled as a random walk was Louis Bachelier's 1900 PhD thesis entitled "The Theory of Speculation". In his thesis Bachelier posited that security prices could be modelled as a Martingale `r Cite(bib, "Bachelier1900", .opts = list(hyperlink = "to.doc"))`. In the context of market efficiency, a Martingale is a price series for which no knowledge of historical prices can help to predict the future prices in the series. According to this model the best guess of the security's price tomorrow is simply its price today. -->
+
+<!-- This model can be expressed as follows, -->
+
+<!-- \begin{equation} -->
+<!-- \mathbf{E}[S_{t} | S_{1}, \ldots S_{t - 1}] = S_{t-1} -->
+<!-- \end{equation} -->
+
+<!-- where $E[S_{t} | S_{1}, \ldots S_{t}]$ denotes the expected price of the security at time $t$, $S_{t}$, given historical prices from time $1$ to time $t-1$, $S_{1}, \ldots S_{t - 1}$. An important implication of Bachelier's thesis is that the expected return of any speculator, in the long-term, is zero. -->
+
+<!-- In his thesis Bachelier did not propose a theoretical basis for his model, his results were entirely empirical. It was only in the 1950's and 1960's that his results were supported by further evidence `r Cite(bib, "Kendall1953", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Osborne1959", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Roberts1959", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Alexander1961", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Cootner1962", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Osborne1962", .opts = list(hyperlink = "to.doc"))` gathered as a result of access to computers `r Cite(bib, "Fama1970", .opts = list(hyperlink = "to.doc"))`. -->
+
+<!-- This weight of evidence came to be known as the Random Walk Hypothesis. Statistically speaking the Random Walk Hypothesis posits that successive changes in the price of a security are independent, identically distributed random variables `r Cite(bib, "Fama1965", .opts = list(hyperlink = "to.doc"))`. -->
+
+<!-- ### The Efficient Market Hypothesis -->
+
+<!-- Paul Samuelson and Benoit Mandelbrot are credited with the first serious application of the Random Walk Hypothesis to the theoretical study of financial markets in 1965 and 1966 respectively `r Cite(bib, "Samuelson1965", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Mandelbrot1966", .opts = list(hyperlink = "to.doc"))`. Samuelson and Mandelbrot proposed that rather than a Martingale, security prices were a submartingale with a positive expected holding period return. In the context of market efficiency, a submartingale is a price series for which the best guess of the security's price tomorrow is greater-than or equal-to its price today. -->
+
+<!-- An important aspect of the submartingale model is that it reconciles the success of passive "buy-and-hold" investment strategies with the Random Walk Hypothesis. A buy-and-hold investment strategy is one whereby the market participant buys securities and holds them either until maturity or until he sells them for liquidity purposes.  -->
+
+<!-- This model can be expressed as follows, -->
+
+<!-- \begin{equation} -->
+<!-- \mathbf{E}[S_{t} | S_{1}, \ldots S_{t - 1}] \geq S_{t-1} -->
+<!-- \end{equation} -->
+
+<!-- Samuelson went on to argue that the random walk model of security prices was an indication of market efficiency which arises from the active participation of many investors each seeking greater wealth for themselves. These investors exploit informational advantages at their disposal and, in so doing, incorporate that information into the security's price thereby eliminating any profit opportunity to be had by acting on the information. This process has come to be known as information arbitrage `r Cite(bib, "Samuelson1965", .opts = list(hyperlink = "to.doc"))`. -->
+
+<!-- Around the same time, Eugene Fama published his thesis entitled, "The behavior of stock-market prices", which empirically tested the Random Walk Hypothesis in its various forms using a number of statistical tests. Fama found no evidence of dependence between successive holding period returns and concluded that the evolution of security's prices through time could be accurately modelled using a random walk model `r Cite(bib, "Fama1965", .opts = list(hyperlink = "to.doc"))`. -->
+
+<!-- In 1970 Eugene Fama and Burton Malkiel published "Efficient capital markets: A review of theory and empirical work" which proposed the Efficient Market Hypothesis. In this paper Fama and Malkiel introduced the idea of informational efficiency which, in its strongest form, states that prices fully reflect all available information `r Cite(bib, "Fama1970", .opts = list(hyperlink = "to.doc"))`. -->
+
+<!-- This model can be expressed as follows, -->
+
+<!-- \begin{equation} -->
+<!-- \mathbf{E}[S_{t} | \Phi_{t-1}] \geq S_{t-1} -->
+<!-- \end{equation} -->
+
+<!-- where $\Phi_{t-1}$ denotes all available information. Fama and Malkiel further discriminated between three forms of informational efficiency: the weak-form, semi-strong-form, and strong-form. These forms differ in terms of what information is included in $\Phi_{t-1}$ `r Cite(bib, "Fama1970", .opts = list(hyperlink = "to.doc"))`. -->
+
+<!-- In weak form efficient markets all historical price and returns data is fully reflected in security prices. In other words, weak-form informational efficiency collapses to the random walk models proposed by Samuelson and Malkiel because $\Phi_{t-1} = S_{1}, \ldots S_{t - 1}$. In semi-strong form efficient markets all material, publically-available information is fully reflected in security prices. In strong efficient markets all information, including material, non-public information, is fully reflected in security prices `r Cite(bib, "Fama1970", .opts = list(hyperlink = "to.doc"))`. -->
+
+<!-- One can easily reason that security prices should follow a random walk from the Efficient Market Hypothesis because if the security's price, at any point in time, fully reflects all information available at that time, then any change in the security's price depends only upon new information which will become available in the future. As such, with respect to historical price or returns data, the next price of the security appears random.  -->
+
+<!-- In a perfectly information efficient market the only participants allowed to generate returns in excess of the market are information arbitrageurs who, nearly-instantaneously, react to new information and backward time-travellers. Fortuitously for the Efficient Market Hypothesis Einstein's theory of general relativity forbids the latter. -->
+
+<!-- ### The "Inefficient Market Hypothesis" -->
+
+<!-- The argument that the Random Walk Hypothesis flows logically from the Efficient Market Hypothesis was challenged initially by Stephen LeRoy in his 1973 paper, "Risk aversion and the martingale property of stock prices" and by Robert Lucas in his 1978 paper, "Asset prices in an exchange economy". LeRoy and Lucas demonstrate that the Random Walk Hypothesis is not a consequent of the Efficient Markey Hypothesis by constructing examples of informationally-efficient markets wherein the Efficient Market Hypothesis holds true but the resulting sequence of security prices are not random `r Cite(bib, "LeRoy1973", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Lucas1978", .opts = list(hyperlink = "to.doc"))`. -->
+
+<!-- Furthermore, in 1976 Sanford Grossman published "On the efficiency of competitive stock markets where trades have diverse information" which was followed up in 1980 by a paper written by Grossman and Joseph Stiglitz entitled, "On the impossibility of informationally efficient markets" in which they argued that informationally-efficient markets are impossible. They reasoned that if markets were efficient then the expected return associated with gathering new information would be zero and, in this instance, there would be no incentive to arbitrage and price discovery would stop `r Cite(bib, "Grossman1976", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Grossman1980", .opts = list(hyperlink = "to.doc"))`. -->
+
+<!-- Grossman and Stiglitz argued that a degree of market inefficiency is what determines the willingness of market participants to gather information on which to make investments. In other words, a non-degenerate market equilibrium will arise if, and only if, there are sufficient profit opportunities in the form of market inefficiencies to compensate investors for the costs associated with information gathering and trading `r Cite(bib, "Grossman1976", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Grossman1980", .opts = list(hyperlink = "to.doc"))`. The paradox is clear: if there are no market inefficiencies there can be no market efficiency. -->
+
+<!-- In 1986 Fisher Black published an elegant solution to this paradox in his paper entitled, "Noise". Black argues that so long as there are market participants who trade for reasons other than information there will be market inefficiencies. An example of this would be a large insurance company who sells securities at a discount in order to meet an insurance claim. The insurance company was not trading on new information, it was simply liquidating its investment to meet a new liability. By selling they will have disturbed the equilibrium price with noise and introduced a market inefficiency `r Cite(bib, "Black1986", .opts = list(hyperlink = "to.doc"))`. -->
+
+<!-- ## Overview of Market Efficiency Tests -->
+
+
+
+<!-- Statistical tests of market efficiency are based on the assumption that if a market were weak-form efficient then price changes would be indistinguishable from a random walk model. As such, most of the statistical tests of market efficiency are actually tests of randomness. Unfortunately, such statistical tests are often tricky to interpret due to the dual assumptions underlying the Random Walk Hypothesis namely that,  -->
+
+<!-- 1. Price changes are independent and, -->
+<!-- 2. Price changes are identically distributed. -->
+
+<!-- Of the two assumptions, independence is the most important. If price changes are independent then the weak-form Efficient Market Hypothesis holds true, if they are depdendent then the weak-form Efficienct Market Hypothesis cannot be true `r Cite(bib, "Fama1965", .opts = list(hyperlink = "to.doc"))`. What follows is an overview of the statistical tests used to test to Efficient Market Hypothesis.  -->
+
+<!-- ### Serial Correlation Tests -->
+
+<!-- Serial correlation (also called autocorrelation) measures the relationship between current and historical price changes for a given security. Statistically significant autocorrelations in price changes imply that current price changes are, to some degree, predictable given historical price changes. This is a violation of the Efficient Market Hypothesis if market participants are able to exploit the autocorrelations to produce abnormal returns `r Cite(bib, "Fama1965", .opts = list(hyperlink = "to.doc"))`.  -->
+
+<!-- Significance tests for serial correlation include the Von Neumann Ratio `r Cite(bib, "Neumann1941", .opts = list(hyperlink = "to.doc"))` and its rank version introduced by Bartels `r Cite(bib, "Bartels1982", .opts = list(hyperlink = "to.doc"))`, the Durbin–Watson test `r Cite(bib, "Durbin1950", .opts = list(hyperlink = "to.doc"))`, the Geary test `r Cite(bib, "Geary1970", .opts = list(hyperlink = "to.doc"))`, the Ljung–Box test `r Cite(bib, "Ljung1978", .opts = list(hyperlink = "to.doc"))`, and the Breusch–Godfrey test `r Cite(bib, "Breusch1980", .opts = list(hyperlink = "to.doc"))`. The power, size, and robustness of these statistical tests have been compared in a number of publications `r Cite(bib, "Habibagahi1972", .opts = list(hyperlink = "to.doc"))` `r Cite(bib, "Evans1992", .opts = list(hyperlink = "to.doc"))`. -->
+
+<!-- ##  Developments owing to Market Efficiency -->
+
+<!-- Whilst the anomalies discussed in the previous section are statistically significant they are also weak enough that a random walk can still describe the vast majority of security price changes through time. So whilst the assumption that security prices' evolve according to a submartingale process is, most probably, untrue, it is not unrealistic or imprudent. For this reason the assumption lies at the heart of most financial risk managament and asset pricing models. Examples of some such models are given below. -->
+
+<!-- ### Derivative Pricing Models -->
+
+<!-- A derivative is a financial security whose price is derived from the price of some other security called the underlying. The simplest derivative is an option. A call option is a contract which gives the holder the right, but not the obligation, to buy a specified amount of a given security at a specified point in time for a specified price. A put option is a contract which gives the holder the right, but not the obligation, to sell a specified amount of a given security at a specified point in time for a specified price.  -->
+
+<!-- _For example: if one were to purchase a 3-month call option to buy 1 RMB stock at R50 for R2.50 and, in 3 months time, the price of RMB stock was R55 then the holder can buy RMB stock at R50 and sell it back to the market for R55 making a R2.5 profit._ -->
+
+<!-- In the early 1970's determining the fair price of a derivative security was still an open problem. It was in 1973 that Fisher Black and Merton Scholes solved this problem with what has come to be known as the Black-Scholes options pricing model. Their model assumes that the price of the security evolves according to a Brownian Motion random walk with drift, also known as Geometric Brownian Motion `r Cite(bib, "Black1973", .opts = list(hyperlink = "to.doc"))`. -->
+
+<!-- This model can be expressed as follows, -->
+
+<!-- \begin{equation} -->
+<!-- dS_{t} = \mu S_{t} dt + \sigma S_{t} dW_{t} -->
+<!-- \end{equation} -->
+
+<!-- where $dS_{t}$ denotes the percentage change in the price of the asset $S$ at time $t$, $\mu$ denotes the average percentage change in price of the asset called drift, $sigma$ denotes the average percentage volatility of the asset, and $dW_{t}$ is the percentage change observed in a Wiener process, a continuous-time Martingale model, also known as Brownian Motion.  -->
+
+<!-- The Black Scholes model, like most other asset pricing models, is inspired by the Efficient Market Hypothesis in the sense that it is rooted in the assumption that a security's price can be described by a random walk model, but some subtle differences between the theory and what's done in practice do exist. For example, the submartingale model does not specify the distribution of daily price changes apriori unlike the Black Scholes model which assumes that this distribution is Gaussian with mean $\mu$ with variance $\sigma^2$. -->
+
+<!-- Much of the literature on asset pricing is devoted to deriving more realistic models whose returns distributions are more similar to those observed in the market. Often-used, alternative models include the Merton Model `r Cite(bib, "Merton1976", .opts = list(hyperlink = "to.doc"))`, which models discontinuities in security prices' using a joint Geometric Brownian Motion and Jump Diffusion process, and the Heston Model `r Cite(bib, "Heston1993", .opts = list(hyperlink = "to.doc"))`, which relaxes the assumption of stationary volatility in the Black Scholes model. Both of these models produce "fat-tailed" returns distributions. -->
+
+<!-- ### Risk Management and Portfolio Selection -->
+
+<!-- TODO -->
