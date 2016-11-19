@@ -1,3 +1,10 @@
+
+#' @title This function plots the distribution of the returns.
+#' @description This function basically just fits a density kernel to the returns and plots it. This will allow you to
+#' see whether or not the returns you are modelling or testing are fat-tailed or not.
+#'
+#' @param returns zoo or numeric vector :: The returns you want to plot the distribution of.
+#'
 plot_fattails <- function(returns) {
   # Trim the returns to make the plot more visible.
   returns <- as.xts(returns)
@@ -31,6 +38,12 @@ plot_fattails <- function(returns) {
 }
 
 
+#' @title Plots the rolling volatility of a daily time series.
+#' @description Financial time series are characterized by fat-tails, and stochastic volatility. This plot will plot
+#' the rolling annualized volatility of a daily return series.
+#'
+#' @param returns zoo or numeric vector :: the return series you want to visualize the stochastic volatility of.
+#'
 plot_rollvol <- function(returns) {
   returns.stdev <- rollapplyr(na.omit(returns), 30, sd) * sqrt(252)
   plot(returns.stdev, main = "30-day Rolling Annualized Volatility of the S&P 500",
@@ -38,6 +51,13 @@ plot_rollvol <- function(returns) {
 }
 
 
+#' @title A handy function for plotting the results of the randomness tests by frequency and test name.
+#' @description This function generates two plots. The first plot is the breakdown of the percentage of randomness
+#' tests which indicated that the return series was non-random by frequency. The second plot is the breakdown of the
+#' percentage of randomness tests which indicated that the return series was non-random by the type of the test.
+#'
+#' @param results_df data.frame :: A data.fram produced by is_random.
+#'
 plot_results <- function(results_df) {
   .plot_results_frequency(results_df)
   .plot_results_test_name(results_df)
@@ -89,28 +109,28 @@ plot_results <- function(results_df) {
 }
 
 
-plot_coloured_points <- function(points = 100, q = 2) {
-  alls <- c()
-  odds <- c()
-  evens <- c()
-
-  for (i in 1:points) {
-    r1 <- runif(1, min = 0.25, max = 0.75)
-    alls <- c(alls, r1)
-
-    if (i %% q) {
-      evens <- c(evens, r1)
-      odds <- c(odds, NA)
-    } else {
-      odds <- c(odds, r1)
-      evens <- c(evens, NA)
-    }
-  }
-
-  plot(alls, pch = 17, col = 'black', ylim = c(0, 1), ylab = "Random Disturbance",
-       xlab = "Time, t", main = "All Random Disturbances")
-  plot(odds, pch = 19, col = 'darkgreen', ylim = c(0, 1), ylab = "Random Disturbance",
-       xlab = "Time, t", main = "Two Subsets of Random Disturbances")
-  points(evens, pch = 15, col = 'red')
-}
+# plot_coloured_points <- function(points = 100, q = 2) {
+#   alls <- c()
+#   odds <- c()
+#   evens <- c()
+#
+#   for (i in 1:points) {
+#     r1 <- runif(1, min = 0.25, max = 0.75)
+#     alls <- c(alls, r1)
+#
+#     if (i %% q) {
+#       evens <- c(evens, r1)
+#       odds <- c(odds, NA)
+#     } else {
+#       odds <- c(odds, r1)
+#       evens <- c(evens, NA)
+#     }
+#   }
+#
+#   plot(alls, pch = 17, col = 'black', ylim = c(0, 1), ylab = "Random Disturbance",
+#        xlab = "Time, t", main = "All Random Disturbances")
+#   plot(odds, pch = 19, col = 'darkgreen', ylim = c(0, 1), ylab = "Random Disturbance",
+#        xlab = "Time, t", main = "Two Subsets of Random Disturbances")
+#   points(evens, pch = 15, col = 'red')
+# }
 

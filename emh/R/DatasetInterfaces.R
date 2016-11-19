@@ -1,3 +1,7 @@
+#' @title A list of global stock market indices available on Quandl.com
+#' @description This function returns a vector of names corresponding to the codes of various global stock market
+#' indices available for free on Quandl.com.
+#'
 data_quandl_indices <- function() {
   # List of Global Stock Market Indices / ETFs (where index not available)
   indices <- c("YAHOO/INDEX_DJI", # Dow Jones Industrial (USA)
