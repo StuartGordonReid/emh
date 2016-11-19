@@ -1,10 +1,10 @@
 Package: emh
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Tests the Efficient Market Hypothesis
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
+Author: Stuart Reid <stuartgordonreid@gmail.com>
+Maintainer: Stuart Reid <stuartgordonreid@gmail.com>
+Description: Allows multiple randomness tests to be run at different frequencies on financial time series.
 License: What license is it under?
 LazyData: TRUE
 Depends:
@@ -25,6 +25,7 @@ Collate:
     'PlottingFunctions.R'
     'SimBrownianMotion.R'
     'SimPermutation.R'
+    'SimJumpDiffusion.R'
     'TestIndependentRuns.R'
     'TestDurbinWatson.R'
     'TestLjungBox.R'

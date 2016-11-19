@@ -1,5 +1,5 @@
 #' @title Brownian Motion with or without Drift.
-#' @description Simulates a logarithmic return series samples from a Brownian Motion model without without drift.
+#' @description Simulates a logarithmic return series samples from a Brownian Motion model with or without drift.
 #'
 #' @param n numeric :: The amount of time to simulate.
 #' @param dt numeric :: Delta t, change in time.
@@ -16,7 +16,7 @@
 #'  \item{"Theorie de la speculation."}{Bachelier, Louis. Gauthier-Villars, 1900.}
 #' }
 #'
-simulate_brownianmotion <- function(n = 252, dt = 0.003968254, vol = 0.25, drift = 0.0) {
+simulate_brownian_motion <- function(n = 252, dt = 0.003968254, vol = 0.25, drift = 0.0) {
   # Simulate a Wiener process.
   wiener <- rnorm(n, 0, sqrt(dt) * vol)
 
