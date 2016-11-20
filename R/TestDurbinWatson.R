@@ -17,7 +17,13 @@ test_durbinwatson <- function(rets, a = 0.99) {
 
   # Use lmtest to compute the p-values.
   colnames(data) <- c("y", "x")
-  dw <- lmtest::dwtest(formula = y ~ 1 + x, data = data,
+
+  # Fit the linear model.
+  lmfit <- lm(formula = y ~ x,
+              data = data)
+
+  # Now compute the durbin-watson statistic.
+  dw <- lmtest::dwtest(formula = lmfit,
                        alternative = "two.sided")
 
   # Get the test statistic (D) for the test.
