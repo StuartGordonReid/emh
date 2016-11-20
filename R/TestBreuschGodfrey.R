@@ -11,9 +11,9 @@ test_breuschgodfrey <- function(rets, a = 0.99) {
 
   # Now construct the data frame.
   k <- length(rets)
-  rets <- tail(rets, k - 1)
-  lags <- head(rets, k - 1)
-  data <- data.frame(rets, lags)
+  y.var <- tail(rets, k - 1)
+  x.var <- head(rets, k - 1)
+  data <- data.frame(y.var, x.var)
 
   # Use lmtest to compute the p-values.
   colnames(data) <- c("y", "x")
