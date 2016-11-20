@@ -8,6 +8,7 @@
 test_ljungbox <- function(rets, a = 0.99, n.lags = 15) {
   # Number of lags.
   k <- length(rets)
+  rets <- as.numeric(rets)
 
   # The denominator.
   den <- k - seq(1, n.lags)

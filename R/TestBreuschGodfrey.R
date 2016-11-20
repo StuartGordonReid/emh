@@ -11,13 +11,14 @@ test_breuschgodfrey <- function(rets, a = 0.99) {
 
   # Now construct the data frame.
   k <- length(rets)
-  lags <- head(rets, k - 1)
-  rets <- tail(rets, k - 1)
-  data <- data.frame(rets, lags)
+  rets <- rets[3:(k-0)]
+  lag1 <- rets[2:(k-1)]
+  lag2 <- rets[1:(k-2)]
+  data <- data.frame(rets, lag1, lag2)
 
   # Use bgtest to compute the p-values.
-  colnames(data) <- c("x", "y")
-  bg <- lmtest::bgtest(formula = x ~ y, data = data)
+  colnames(data) <- c("y", "x1", "x2")
+  bg <- lmtest::bgtest(formula = y ~ 1 + x1 + x2, data = data)
 
   # Get the test statistic (D) for the test.
   stat <- bg$statistic
