@@ -30,6 +30,7 @@ data_quandl_downloader <- function(codes) {
       datasets[[length(datasets) + 1]] <- closes
     }, error = function(e) {
       warning(paste("Error downloading", codes[i], e))
+      codes <- codes[!codes %in% codes[i]]
     })
     setTxtProgressBar(pb, i / length(codes))
   }
