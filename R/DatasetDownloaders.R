@@ -7,7 +7,7 @@
 #'
 data_quandl_downloader <- function(codes) {
   # The generic Quandl API key for TuringFinance.
-  Quandl.api_key("t6Rn1d5N1W6Qt4jJq_zC")
+  Quandl::Quandl.api_key("t6Rn1d5N1W6Qt4jJq_zC")
   print("DOWNLOADING DATASETS ...")
 
   # Create a progress bar.
@@ -18,7 +18,7 @@ data_quandl_downloader <- function(codes) {
   for (i in 1:length(codes)) {
     tryCatch(expr = {
       # Download the raw price data from Quandl.com.
-      data <- Quandl(codes[i], type = "zoo", collapse = "daily")
+      data <- Quandl::Quandl(codes[i], type = "zoo", collapse = "daily")
 
       # Get the indices of the various possible values.
       adjusted <- which(colnames(data) == "Adjusted Close")

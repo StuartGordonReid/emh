@@ -21,7 +21,7 @@ is_random <- function(S, a = 0.99,
                                  "Fri", "Week", "Month")) {
 
   # Check that we have the right type of data.
-  if (!is.zoo(S))
+  if (!zoo::is.zoo(S))
     stop("is.random only works with zoo time series.")
 
   # Extract the returns and log returns.

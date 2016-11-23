@@ -20,7 +20,7 @@ simulate_permutation <- function(logrets, window, cluster = NULL, overlapping = 
     logrets.vec <- as.vector(logrets)
     for (t in 1:(length(logrets.vec) - window))
       logrets.vec[t:(t + window - 1)] <- sample(logrets.vec[t:(t + window - 1)], window)
-    return(zoo(logrets.vec, index(logrets)))
+    return(zoo::zoo(logrets.vec, zoo::index(logrets)))
   } else {
     # Subset the logrets by the remainder.
     remainder <- tau %% window
@@ -39,6 +39,6 @@ simulate_permutation <- function(logrets, window, cluster = NULL, overlapping = 
     else l <- parLapply(cluster, l, sample, size = window)
 
     # Return the data as a zoo object.
-    return(zoo(unlist(l), index(logrets)))
+    return(zoo::zoo(unlist(l), zoo::index(logrets)))
   }
 }

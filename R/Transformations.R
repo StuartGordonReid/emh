@@ -5,10 +5,10 @@
 #' @return A zoo object or numeric vector containing price levels.
 #'
 as_levels <- function(logrets) {
-  if (is.zoo(logrets)) {
-    dates <- index(logrets)
+  if (zoo::is.zoo(logrets)) {
+    dates <- zoo::index(logrets)
     levels <- cAsLevels(as.numeric(logrets))
-    return(zoo(levels, dates))
+    return(zoo::zoo(levels, dates))
   } else if (!is.numeric(logrets)) {
     stop("Please supply log returns as a vector or zoo.")
   }
@@ -24,11 +24,11 @@ as_levels <- function(logrets) {
 #' @return A zoo object or numeric vector containing log returns of order, order.
 #'
 as_logreturns <- function(levels, order = 1) {
-  if (is.zoo(levels)) {
-    dates <- index(levels)
+  if (zoo::is.zoo(levels)) {
+    dates <- zoo::index(levels)
     levels <- as.numeric(levels)
     logrets <- cAsLogReturns(levels, order)
-    return(zoo(logrets, tail(dates, length(logrets) - order)))
+    return(zoo::zoo(logrets, tail(dates, length(logrets) - order)))
   } else if (!is.numeric(levels)) {
     stop("Please supply levels as a vector or zoo")
   }
@@ -55,10 +55,10 @@ as_returns <- function(levels, order = 1) {
 #' @return A zoo object or numeric vector containing the binarized returns.
 #'
 as_binary <- function(rets) {
-  if (is.zoo(rets)) {
-    dates <- index(rets)
+  if (zoo::is.zoo(rets)) {
+    dates <- zoo::index(rets)
     rets <- as.numeric(rets)
-    return(zoo(cAsBinary(rets), dates))
+    return(zoo::zoo(cAsBinary(rets), dates))
   } else if (!is.numeric(rets)) {
     stop("Please supply levels as a vector or zoo")
   }
@@ -76,7 +76,7 @@ as_binary <- function(rets) {
 #' @return A zoo object containing the returns converted to the specified frequency.
 #'
 as_frequency <- function(logrets.zoo, frequency) {
-  if (!is.zoo(logrets.zoo))
+  if (!zoo::is.zoo(logrets.zoo))
     stop("as_frequency only works with zoo objects")
 
   if (frequency == 1)
@@ -104,14 +104,14 @@ as_frequency <- function(logrets.zoo, frequency) {
       rfreq <- rfreq + rvec[seq(i, tau, frequency)]
 
     # Return the cumulative returns at the new frequency as a zoo object.
-    return(zoo(rfreq, index(logrets.zoo)[seq(frequency, tau, frequency)]))
+    return(zoo::zoo(rfreq, zoo::index(logrets.zoo)[seq(frequency, tau, frequency)]))
   } else  {
     # First interpolate so all dates are present.
     logrets.zoo <- as_interpolated(logrets.zoo)
 
     # Get the dates.
     tau <- length(logrets.zoo)
-    dates <- index(logrets.zoo)
+    dates <- zoo::index(logrets.zoo)
     logrets.zoo <- as.vector(logrets.zoo)
 
     if (frequency %in% c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) {
@@ -126,7 +126,7 @@ as_frequency <- function(logrets.zoo, frequency) {
       }
 
       # Return the cumulative returns as a zoo object.
-      return(zoo(rfreq, dates[which(weekdays(dates, abbreviate = T) == frequency)]))
+      return(zoo::zoo(rfreq, dates[which(weekdays(dates, abbreviate = T) == frequency)]))
     } else if (frequency %in% "Week") {
       # Calculate the cumulative week to week returns.
       rfreq <- c(logrets.zoo[1]); ix <- 1
@@ -144,7 +144,7 @@ as_frequency <- function(logrets.zoo, frequency) {
       # Return the cumulative returns as a zoo object.
       weekdiffs <- head(week(dates), tau - 1) - tail(week(dates), tau - 1)
       weekdates <- dates[which(abs(weekdiffs) > 0)]
-      return(zoo(rfreq, weekdates))
+      return(zoo::zoo(rfreq, weekdates))
     } else if (frequency %in% "Month") {
       # Calculate the cumulative month to month returns.
       rfreq <- c(logrets.zoo[1]); ix <- 1
@@ -162,7 +162,7 @@ as_frequency <- function(logrets.zoo, frequency) {
       # Return the cumulative returns as a zoo object.
       monthdiffs <- head(month(dates), tau - 1) - tail(month(dates), tau - 1)
       monthdates <- dates[which(abs(monthdiffs) > 0)]
-      return(zoo(rfreq, monthdates))
+      return(zoo::zoo(rfreq, monthdates))
     }
   }
 }
@@ -176,7 +176,7 @@ as_frequency <- function(logrets.zoo, frequency) {
 #' @return A zoo object containing the interpolated time series.
 #'
 as_interpolated <- function(logrets.zoo) {
-  if (!is.zoo(logrets.zoo))
+  if (!zoo::is.zoo(logrets.zoo))
     stop("as_frequency only works with zoo objects")
 
   # First interpolate the time series so all dates are present.
@@ -185,7 +185,7 @@ as_interpolated <- function(logrets.zoo) {
   logrets.zoo <- rowSums(merge(logrets.zoo, zeros.zoo))
 
   # Fill all previously missing dates with 0.
-  return(na.fill(zoo(logrets.zoo, dates.all), 0))
+  return(na.fill(zoo::zoo(logrets.zoo, dates.all), 0))
 }
 
 
@@ -198,12 +198,12 @@ as_interpolated <- function(logrets.zoo) {
 #'
 as_residuals <- function(rets) {
   dates <- NULL
-  if (is.zoo(rets)) {
-    dates <- index(rets)
+  if (zoo::is.zoo(rets)) {
+    dates <- zoo::index(rets)
     rets <- as.numeric(rets)
     logrets <- log(rets + 1)
     residuals <- logrets - mean(logrets)
-    return(zoo(exp(residuals) - 1, dates))
+    return(zoo::zoo(exp(residuals) - 1, dates))
   } else if (is.numeric(rets)) {
     logrets <- log(rets + 1)
     residuals <- logrets - mean(logrets)
@@ -223,11 +223,11 @@ as_residuals <- function(rets) {
 #'
 as_residuals_rolling <- function(rets, w = 126) {
   dates <- NULL
-  if (is.zoo(rets)) {
-    dates <- index(rets)
+  if (zoo::is.zoo(rets)) {
+    dates <- zoo::index(rets)
     rets <- as.numeric(rets)
     residuals <- cAsRollingResiduals(rets, w - 1)
-    return(zoo(residuals, tail(dates, length(residuals))))
+    return(zoo::zoo(residuals, tail(dates, length(residuals))))
   } else if (is.numeric(rets)) {
     return(cAsRollingResiduals(rets, w - 1))
   } else {
@@ -245,11 +245,11 @@ as_residuals_rolling <- function(rets, w = 126) {
 #'
 as_trend_rolling <- function(rets, w = 126) {
   dates <- NULL
-  if (is.zoo(rets)) {
-    dates <- index(rets)
+  if (zoo::is.zoo(rets)) {
+    dates <- zoo::index(rets)
     rets <- as.numeric(rets)
     trend <- cAsRollingTrend(rets, w - 1)
-    return(zoo(trend, tail(dates, length(trend))))
+    return(zoo::zoo(trend, tail(dates, length(trend))))
   } else if (is.numeric(rets)) {
     return(cAsRollingTrend(rets, w - 1))
   } else {
@@ -266,7 +266,7 @@ as_trend_rolling <- function(rets, w = 126) {
 #' @return A zoo object or numeric vector containing the residuals from a regression.
 #'
 as_residuals_lm <- function(rets) {
-  if (is.zoo(rets)) {
+  if (zoo::is.zoo(rets)) {
     rets.lagged <- lag(rets, -1)
     data <- merge(rets, rets.lagged)
     data <- as.data.frame(na.omit(data))
@@ -279,5 +279,5 @@ as_residuals_lm <- function(rets) {
   }
 
   fit <- lm(rets ~ rets.lagged, data)
-  return(zoo(fit$residuals, names(fit$residuals)))
+  return(zoo::zoo(fit$residuals, names(fit$residuals)))
 }

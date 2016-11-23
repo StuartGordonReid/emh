@@ -7,10 +7,10 @@
 #'
 plot_fattails <- function(returns) {
   # Trim the returns to make the plot more visible.
-  returns <- as.xts(returns)
+  returns <- xts::as.xts(returns)
   returns[returns > 0.075] <- NA
   returns[returns < -0.075] <- NA
-  returns <- as.zoo(na.omit(returns))
+  returns <- zoo::as.zoo(na.omit(returns))
 
   # Get the density of the returns.
   returns.d <- density(returns)
@@ -45,7 +45,7 @@ plot_fattails <- function(returns) {
 #' @param returns zoo or numeric vector :: the return series you want to visualize the stochastic volatility of.
 #'
 plot_rollvol <- function(returns) {
-  returns.stdev <- rollapplyr(na.omit(returns), 30, sd) * sqrt(252)
+  returns.stdev <- zoo::rollapplyr(na.omit(returns), 30, sd) * sqrt(252)
   plot(returns.stdev, main = "30-day Rolling Annualized Volatility of the S&P 500",
        ylab = "Annualized Volatility", xlab = "Time")
 }

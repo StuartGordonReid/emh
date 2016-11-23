@@ -88,34 +88,6 @@ NumericVector cAsRollingTrend(NumericVector rets, int w) {
 
 
 // [[Rcpp::export]]
-NumericVector cFillWeights(NumericVector preWeights, NumericVector rms) {
-  int kPreWeights = preWeights.size();
-  int kRms = rms.size();
-
-  // Sort the removed indexes
-  rms = rms.sort();
-
-  int kWeights = kPreWeights + kRms;
-  NumericVector newWeights(kWeights, 0.0);
-
-  for (int i=0, j=0, k=0; i < kWeights; i++) {
-    if (j < kRms) {
-      if (i == (rms[j] - 1)) {
-        j += 1;
-      } else {
-        newWeights[i] = preWeights[k];
-        k += 1;
-      }
-    } else {
-      newWeights[i] = preWeights[k];
-      k += 1;
-    }
-  }
-  return(newWeights);
-}
-
-
-// [[Rcpp::export]]
 std::list<NumericMatrix> cWindow(NumericMatrix data, int window) {
   std::list<NumericMatrix> windows;
   for (int i = (window - 1); i < data.rows(); i++)
@@ -139,17 +111,6 @@ NumericMatrix cMatrixSubCols(NumericMatrix matrix, int start, int end) {
 // [[Rcpp::export]]
 NumericVector cMomentum(NumericMatrix matrix) {
   return(matrix(matrix.rows() - 1, _) / matrix(0, _));
-}
-
-
-// [[Rcpp::export]]
-int cFirstLocation(std::vector<std::string> names, std::string match) {
-  for (int i = 0; i < names.size(); i++) {
-    std::size_t found = names[i].find(match);
-    if (found != std::string::npos)
-      return(i + 1);
-  }
-  return(0);
 }
 
 

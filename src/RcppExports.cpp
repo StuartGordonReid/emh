@@ -131,18 +131,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cFillWeights
-NumericVector cFillWeights(NumericVector preWeights, NumericVector rms);
-RcppExport SEXP emh_cFillWeights(SEXP preWeightsSEXP, SEXP rmsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type preWeights(preWeightsSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type rms(rmsSEXP);
-    rcpp_result_gen = Rcpp::wrap(cFillWeights(preWeights, rms));
-    return rcpp_result_gen;
-END_RCPP
-}
 // cWindow
 std::list<NumericMatrix> cWindow(NumericMatrix data, int window);
 RcppExport SEXP emh_cWindow(SEXP dataSEXP, SEXP windowSEXP) {
@@ -189,18 +177,6 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericMatrix >::type matrix(matrixSEXP);
     rcpp_result_gen = Rcpp::wrap(cMomentum(matrix));
-    return rcpp_result_gen;
-END_RCPP
-}
-// cFirstLocation
-int cFirstLocation(std::vector<std::string> names, std::string match);
-RcppExport SEXP emh_cFirstLocation(SEXP namesSEXP, SEXP matchSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::vector<std::string> >::type names(namesSEXP);
-    Rcpp::traits::input_parameter< std::string >::type match(matchSEXP);
-    rcpp_result_gen = Rcpp::wrap(cFirstLocation(names, match));
     return rcpp_result_gen;
 END_RCPP
 }

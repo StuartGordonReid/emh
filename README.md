@@ -24,14 +24,18 @@ All of this is done with one simple function call,
 emh::is_random(zoo.object)
 ```
 
-## Installation
+## Installation (Linux)
 
-To install emh please use the devtools package,
+You can install emh using the devtools package,
 
 ```R
 library(devtools)
 devtools::install_github(repo="stuartgordonreid/emh")
 ```
+
+## Installation (Windows)
+
+You can install emh on windows by 
 
 ## Examples
 

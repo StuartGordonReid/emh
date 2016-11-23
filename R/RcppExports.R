@@ -45,10 +45,6 @@ cAsRollingTrend <- function(rets, w) {
     .Call('emh_cAsRollingTrend', PACKAGE = 'emh', rets, w)
 }
 
-cFillWeights <- function(preWeights, rms) {
-    .Call('emh_cFillWeights', PACKAGE = 'emh', preWeights, rms)
-}
-
 cWindow <- function(data, window) {
     .Call('emh_cWindow', PACKAGE = 'emh', data, window)
 }
@@ -63,10 +59,6 @@ cMatrixSubCols <- function(matrix, start, end) {
 
 cMomentum <- function(matrix) {
     .Call('emh_cMomentum', PACKAGE = 'emh', matrix)
-}
-
-cFirstLocation <- function(names, match) {
-    .Call('emh_cFirstLocation', PACKAGE = 'emh', names, match)
 }
 
 cSort <- function(data) {
