@@ -24,7 +24,7 @@ All of this is done with one simple function call,
 emh::is_random(zoo.object)
 ```
 
-## Installation (Linux)
+## Installation
 
 You can install emh using the devtools package,
 
@@ -32,10 +32,6 @@ You can install emh using the devtools package,
 library(devtools)
 devtools::install_github(repo="stuartgordonreid/emh")
 ```
-
-## Installation (Windows)
-
-You can install emh on windows by 
 
 ## Examples
 
