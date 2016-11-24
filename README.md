@@ -28,23 +28,25 @@ emh::is_random(zoo.object)
 
 ### Linux and Mac
 
-You can install emh using the devtools package,
+Try and install emh using the devtools package,
 
 ```R
 library(devtools)
 devtools::install_github(repo="stuartgordonreid/emh")
 ```
 
-### Windows
+### Linux, Mac, and Windows
 
-As of v0.1.0 some Windows users are having trouble installing the package. This should be resolved by v0.2.0. In the meantim, 
-if method one did not work for you then try cloning the respository to your local machine,
+And if you have trouble installing the package, then rather clone the respository to your local machine,
 
 ```
 git clone https://github.com/StuartGordonReid/emh.git
 ```
 
-And then build and installing the package either from [RStudio](https://support.rstudio.com/hc/en-us/articles/200486508-Building-Testing-and-Distributing-Packages) or from the [R command line tool](http://kbroman.org/pkg_primer/pages/build.html). If you still run into issues please let me know.
+And then build and install the package either from [RStudio](https://support.rstudio.com/hc/en-us/articles/200486508-Building-Testing-and-Distributing-Packages) 
+or from the [R command line tool](http://kbroman.org/pkg_primer/pages/build.html). 
+
+And if you still run into issues please let me know on the GitHub issues page.
 
 ## Examples
 
