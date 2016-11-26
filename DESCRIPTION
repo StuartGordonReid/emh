@@ -7,7 +7,7 @@ Maintainer: Stuart Reid <stuartgordonreid@gmail.com>
 Description: Allows multiple randomness tests to be run at different frequencies on financial time series.
 License: MIT
 LazyData: TRUE
-Depends:
+Depends: 
 Imports:
     zoo,
     xts,
@@ -16,6 +16,7 @@ Imports:
     randtests,
     lubridate,
     parallel,
+    stringr,
     Rcpp (>= 0.12.4)
 LinkingTo: Rcpp
 Collate:
@@ -28,7 +29,9 @@ Collate:
     'SimBrownianMotion.R'
     'SimPermutation.R'
     'SimJumpDiffusion.R'
+    'TestResultObject.R'
     'TestIndependentRuns.R'
+    'TestBlockFrequencies.R'
     'TestDurbinWatson.R'
     'TestLjungBox.R'
     'TestBreuschGodfrey.R'
@@ -36,3 +39,4 @@ Collate:
     'TestVarianceRatioLoMac.R'
     'TestMarketEfficiency.R'
 RoxygenNote: 5.0.1
+Suggests: testthat

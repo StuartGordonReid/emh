@@ -13,7 +13,7 @@
 #' @param a numeric :: The confidence interval to use.
 #' @param q int :: The sampling interval for the estimator.
 #'
-test_vratio_lo_mac <- function(rets, a = 0.99, q = 2) {
+test_vratio_lo_mac <- function(rets, a = 0.99, q = 2, r = "lm", w = 126) {
   # The number if returns over q.
   n <- floor(length(rets)/q)
   X <- log(as_levels(rets))
@@ -31,8 +31,8 @@ test_vratio_lo_mac <- function(rets, a = 0.99, q = 2) {
   thresh <- abs(qnorm((1 - a) / 2))
 
   # Return the results object.
-  return(c(statistic, p.value, z.score,
-           abs(z.score) > thresh))
+  return(RandomnessResult("Lo MacKinlay", "Variance Ratio",
+                          statistic, p.value, z.score, abs(z.score) > thresh))
 }
 
 

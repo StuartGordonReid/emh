@@ -5,7 +5,7 @@
 #' @param a numeric :: alpha. This controls the significance level of the results.
 #' @param n.lags numeric :: the number of lags to test up to.
 #'
-test_ljungbox <- function(rets, a = 0.99, n.lags = 15) {
+test_ljungbox <- function(rets, a = 0.99, n.lags = 15, r = "lm", w = 126) {
   # Number of lags.
   k <- length(rets)
   rets <- as.numeric(rets)
@@ -35,6 +35,6 @@ test_ljungbox <- function(rets, a = 0.99, n.lags = 15) {
   thresh <- abs(qnorm((1 - a) / 2))
 
   # Return the results object.
-  return(c(stat, p.value, z.score,
-           abs(z.score) > thresh))
+  return(RandomnessResult("Ljung Box", "Serial Correlation",
+                          stat, p.value, z.score, abs(z.score) > thresh))
 }

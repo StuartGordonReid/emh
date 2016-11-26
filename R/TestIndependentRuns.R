@@ -4,7 +4,7 @@
 #' @param rets numeric :: time series returns. May be a zoo or numeric vector.
 #' @param a numeric :: alpha. This controls the significance level of the results.
 #'
-test_runs <- function(rets, a = 0.99) {
+test_runs <- function(rets, a = 0.99, r = "lm", w = 126) {
   # Check and convert the data.
   .check_data(data = rets)
   binrets <- as_binary(rets)
@@ -31,8 +31,9 @@ test_runs <- function(rets, a = 0.99) {
   thresh <- abs(qnorm((1 - a) / 2))
 
   # Return the results object.
-  return(c(k.runs, p.value, z.score,
-           abs(z.score) > thresh))
+  return(RandomnessResult("Independent Runs", "Runs",
+                          k.runs, p.value, z.score,
+                          abs(z.score) > thresh))
 }
 
 

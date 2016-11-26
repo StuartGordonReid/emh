@@ -4,7 +4,7 @@
 #' @param rets numeric :: time series returns. May be a zoo or numeric vector.
 #' @param a numeric :: alpha. This controls the significance level of the results.
 #'
-test_bartellrank <- function(rets, a = 0.99) {
+test_bartellrank <- function(rets, a = 0.99, r = "lm", w = 126) {
   # Check and convert the data.
   .check_data(data = rets)
   rets <- as.numeric(rets)
@@ -25,6 +25,6 @@ test_bartellrank <- function(rets, a = 0.99) {
   thresh <- abs(qnorm((1 - a) / 2))
 
   # Return the results object.
-  return(c(stat, p.value, z.score,
-           abs(z.score) > thresh))
+  return(RandomnessResult("Bartell Rank", "Variance Ratio",
+                          stat, p.value, z.score, abs(z.score) > thresh))
 }
